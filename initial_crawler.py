@@ -126,8 +126,8 @@ async def fetch_url(crawler, url: str, config, retries=3, base_delay=5):
 # Main async function
 # ----------------------------------------------------------
 async def main():
-    csv_file = r"/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/UniScrapper/usa_wyoming_montana_test.csv"
-    output_dir = Path(r"/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/UniScrapper/latest_crawled")
+    csv_file = r"crawling-scrapping/input_test.csv"
+    output_dir = Path(r"crawling-scrapping/latest_crawled")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     programs = load_csv_data(csv_file)
