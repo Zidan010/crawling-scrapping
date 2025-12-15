@@ -46,7 +46,7 @@ crawl_config = CrawlerRunConfig(
     excluded_tags=["form", "header", "footer", "nav", "img"],
     exclude_social_media_links=True,
     exclude_external_images=True,
-    exclude_external_links=False,  # Needed to capture all links
+    exclude_external_links=False,  # Need to capture all links
 )
 
 # ----------------------------------------------------------
@@ -58,7 +58,7 @@ def clean_filename(text: str) -> str:
     text = text.strip()
     text = re.sub(r'[\\/*?:"<>|\r\n]+', "", text)
     text = re.sub(r"\s+", "_", text)
-    return text
+    return text[:150]
 
 def is_same_domain(base_url: str, check_url: str) -> bool:
     base_netloc = urlparse(base_url).netloc
@@ -85,121 +85,132 @@ def load_csv_data(csv_file: str):
         logger.error(f"Error reading CSV file {csv_file}: {str(e)}")
         return []
 
+async def extract_internal_links(result, base_url: str, visited: set) -> list:
+    """Extract unique internal links not yet visited."""
+    if not result:
+        return []
+    internal_links_list = result.links.get("internal", [])
+    raw_links = {
+        normalize_url(link.get("href", ""), base_url)
+        for link in internal_links_list
+        if link.get("href")
+    }
+    filtered = [
+        link for link in raw_links
+        if link.startswith(('http://', 'https://'))
+        and is_same_domain(base_url, link)
+        and link != base_url
+        and link not in visited
+    ]
+    return filtered
+
 # ----------------------------------------------------------
-# Fetch logic with retry + fallback
+# Fetch logic (only for pages we need content + links from)
 # ----------------------------------------------------------
 async def fetch_url(crawler, url: str, config, retries=3, base_delay=5):
     blocked_domains = ["utulsa.edu"]
     if any(domain in url for domain in blocked_domains):
-        logger.warning(f"⚠️ Skipping likely blocked domain: {url}")
+        logger.warning(f"⚠️ Skipping blocked domain: {url}")
         return None
 
     for attempt in range(retries):
         try:
-            logger.info(f"Attempt {attempt + 1} for URL: {url}")
+            logger.info(f"Fetching {url} (attempt {attempt + 1})")
             result = await crawler.arun(url=url, config=config)
-
             if result and result.markdown:
                 logger.info(f"✅ Successfully fetched {url}")
                 return result
-            else:
-                raise ValueError("No content retrieved from URL")
-
         except Exception as e:
-            logger.error(f"Error fetching {url} on attempt {attempt + 1}: {str(e)}")
+            logger.error(f"Error on {url}: {str(e)}")
             if attempt < retries - 1:
-                wait_time = base_delay * (2 ** attempt)
-                logger.info(f"Retrying {url} after {wait_time} seconds...")
-                await asyncio.sleep(wait_time)
-            else:
-                logger.warning(f"⛔ Fetch failed after {retries} attempts, trying fallback...")
-                try:
-                    resp = requests.get(url, timeout=20, headers={"User-Agent": "Mozilla/5.0"})
-                    if resp.ok and "text/html" in resp.headers.get("Content-Type", ""):
-                        logger.info(f"✅ Fallback fetch succeeded for {url}")
-                        return SimpleNamespace(markdown=resp.text, links={"internal": [], "external": []})
-                except Exception as ex:
-                    logger.error(f"Fallback fetch failed for {url}: {str(ex)}")
-                return None
+                await asyncio.sleep(base_delay * (2 ** attempt))
+    logger.warning(f"⚠️ Failed to fetch {url} after retries")
+    return None
 
 # ----------------------------------------------------------
 # Main async function
 # ----------------------------------------------------------
 async def main():
     csv_file = r"../crawling-scrapping/input_test.csv"
-    output_dir = Path(r"../crawling-scrapping/latest_crawled")
+    output_dir = Path(r"../crawling-scrapping/link_crawled")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     programs = load_csv_data(csv_file)
     if not programs:
-        logger.error("No programs to process. Exiting.")
+        logger.error("No programs to process.")
         return
 
     async with AsyncWebCrawler(config=browser_config) as crawler:
         for idx, program in enumerate(programs, 1):
-            logger.info(f"Processing program {idx}/{len(programs)}")
+            logger.info(f"\n=== Processing program {idx}/{len(programs)} ===")
 
             predefined_data = {field: program.get(field, "") for field in PREDEFINED_FIELDS}
-
             program_url = predefined_data.get("program_url", "").strip()
             if not program_url:
-                logger.warning("Skipping row with empty program_url")
+                logger.warning("Skipping empty program_url")
                 continue
 
             program_name = clean_filename(predefined_data.get("program_name", "unknown_program"))
             uni_name = clean_filename(predefined_data.get("university_name", "unknown_university"))
 
-            # Fetch main program page
+            # Structures to store results
+            associated_links = {}      # {"url_1": "https://...", ...}
+            link_hierarchy = {"main": []}  # parent → [child_keys]
+            visited = {program_url}    # Track all seen URLs for uniqueness
+
+            # 1. Fetch main program page (content + layer 1 links)
             main_result = await fetch_url(crawler, program_url, crawl_config)
-            if main_result and main_result.markdown:
-                main_content = main_result.markdown
+            main_content = main_result.markdown if main_result and main_result.markdown else ""
+            logger.info(f"Main page content length: {len(main_content)} characters")
 
-                # Extract unique internal associated links
-                internal_links_list = main_result.links.get("internal", [])
-                associated_links_raw = list(set(
-                    normalize_url(link.get("href", ""), program_url)
-                    for link in internal_links_list
-                    if link.get("href")
-                ))
-                associated_links_raw = [
-                    link for link in associated_links_raw
-                    if link.startswith(('http://', 'https://'))
-                    and is_same_domain(program_url, link)
-                    and link != program_url
-                ]
-                associated_links = {f"url_{i}": link for i, link in enumerate(associated_links_raw, 1)}
-                logger.info(f"Found {len(associated_links)} unique associated internal links for {program_url}")
-            else:
-                main_content = ""
-                associated_links = {}
-                logger.warning(f"⚠️ Failed to fetch main program page: {program_url}")
+            # 2. Extract Layer 1 links
+            layer1_links = await extract_internal_links(main_result, program_url, visited)
+            logger.info(f"Found {len(layer1_links)} unique Layer 1 links")
 
-            # Initialize program_details as dict: "main" + "url_1", "url_2", ...
-            program_details = {"main": main_content}
+            url_counter = 1
 
-            # Crawl each associated link and store content under matching key
-            for key, url in associated_links.items():
+            # Process each Layer 1 page (we need their links for Layer 2)
+            for l1_url in layer1_links:
+                key = f"url_{url_counter}"
+                associated_links[key] = l1_url
+                link_hierarchy["main"].append(key)
+                link_hierarchy[key] = []  # prepare for possible Layer 2 children
+                visited.add(l1_url)
+
                 await asyncio.sleep(random.uniform(3, 8))
-                result = await fetch_url(crawler, url, crawl_config)
-                content = result.markdown if result and result.markdown else ""
-                program_details[key] = content
-                status = "✅" if content else "⚠️"
-                logger.info(f"{status} Stored content for {key} → {url}")
 
-            # Final output
+                l1_result = await fetch_url(crawler, l1_url, crawl_config)
+                if l1_result:
+                    # Extract Layer 2 links from this page
+                    layer2_links = await extract_internal_links(l1_result, l1_url, visited)
+                    logger.info(f"From {key}: found {len(layer2_links)} unique Layer 2 links")
+
+                    for l2_url in layer2_links:
+                        l2_key = f"url_{url_counter + 1}"
+                        associated_links[l2_key] = l2_url
+                        link_hierarchy[key].append(l2_key)
+                        visited.add(l2_url)
+                        url_counter += 1
+
+                url_counter += 1  # for next Layer 1
+
+            # Final output: only main content + all links + hierarchy
             output_data = {
                 **predefined_data,
-                "associated_links": associated_links,      # {"url_1": "https://...", ...}
-                "program_details": program_details         # {"main": "...", "url_1": "...", "url_2": "..."}
+                "main_content": main_content,
+                "associated_links": associated_links,        # all unique links with keys
+                "link_hierarchy": link_hierarchy            # clear parent-child mapping
             }
 
-            js_file = output_dir / f"{uni_name}_{program_name}_scraped.json"
-            with open(js_file, 'w', encoding='utf-8') as file:
-                json.dump(output_data, file, indent=4, ensure_ascii=False)
-            logger.info(f"💾 Saved scraped data → {js_file}")
+            js_file = output_dir / f"{uni_name}_{program_name}_links_only.json"
+            with open(js_file, 'w', encoding='utf-8') as f:
+                json.dump(output_data, f, indent=4, ensure_ascii=False)
+
+            logger.info(f"💾 Saved links-only data → {js_file}")
+            logger.info(f"Total unique links collected: {len(associated_links)}\n")
 
             if idx < len(programs):
-                await asyncio.sleep(random.uniform(5, 10))
+                await asyncio.sleep(random.uniform(6, 12))
 
 # ----------------------------------------------------------
 # Entry point

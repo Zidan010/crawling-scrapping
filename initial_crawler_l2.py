@@ -1,3 +1,4 @@
+
 import json
 import asyncio
 import logging
@@ -46,7 +47,7 @@ crawl_config = CrawlerRunConfig(
     excluded_tags=["form", "header", "footer", "nav", "img"],
     exclude_social_media_links=True,
     exclude_external_images=True,
-    exclude_external_links=False,  # Needed to capture all links
+    exclude_external_links=False,  # To capture all links initially
 )
 
 # ----------------------------------------------------------
@@ -58,7 +59,7 @@ def clean_filename(text: str) -> str:
     text = text.strip()
     text = re.sub(r'[\\/*?:"<>|\r\n]+', "", text)
     text = re.sub(r"\s+", "_", text)
-    return text
+    return text[:150]
 
 def is_same_domain(base_url: str, check_url: str) -> bool:
     base_netloc = urlparse(base_url).netloc
@@ -122,12 +123,30 @@ async def fetch_url(crawler, url: str, config, retries=3, base_delay=5):
                     logger.error(f"Fallback fetch failed for {url}: {str(ex)}")
                 return None
 
+async def extract_links(result, base_url: str, visited: set) -> list:
+    if not result:
+        return []
+    internal_links_list = result.links.get("internal", [])
+    links_raw = list(set(
+        normalize_url(link.get("href", ""), base_url)
+        for link in internal_links_list
+        if link.get("href")
+    ))
+    links_filtered = [
+        link for link in links_raw
+        if link.startswith(('http://', 'https://'))
+        and is_same_domain(base_url, link)
+        and link != base_url
+        and link not in visited
+    ]
+    return links_filtered
+
 # ----------------------------------------------------------
 # Main async function
 # ----------------------------------------------------------
 async def main():
     csv_file = r"../crawling-scrapping/input_test.csv"
-    output_dir = Path(r"../crawling-scrapping/latest_crawled")
+    output_dir = Path(r"../crawling-scrapping/latest_crawled_l2")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     programs = load_csv_data(csv_file)
@@ -149,48 +168,70 @@ async def main():
             program_name = clean_filename(predefined_data.get("program_name", "unknown_program"))
             uni_name = clean_filename(predefined_data.get("university_name", "unknown_university"))
 
+            # Track all unique URLs and their keys
+            associated_links = {}  # {"url_1": "https://...", ...}
+            program_details = {}   # {"main": "...", "url_1": "...", ...}
+            link_hierarchy = {"main": []}  # {"main": ["url_1", "url_2"], "url_1": ["url_3", ...], ...}
+            visited = set([program_url])   # To avoid duplicates and cycles
+
             # Fetch main program page
             main_result = await fetch_url(crawler, program_url, crawl_config)
             if main_result and main_result.markdown:
-                main_content = main_result.markdown
-
-                # Extract unique internal associated links
-                internal_links_list = main_result.links.get("internal", [])
-                associated_links_raw = list(set(
-                    normalize_url(link.get("href", ""), program_url)
-                    for link in internal_links_list
-                    if link.get("href")
-                ))
-                associated_links_raw = [
-                    link for link in associated_links_raw
-                    if link.startswith(('http://', 'https://'))
-                    and is_same_domain(program_url, link)
-                    and link != program_url
-                ]
-                associated_links = {f"url_{i}": link for i, link in enumerate(associated_links_raw, 1)}
-                logger.info(f"Found {len(associated_links)} unique associated internal links for {program_url}")
+                program_details["main"] = main_result.markdown
+                level1_links = await extract_links(main_result, program_url, visited)
+                logger.info(f"Found {len(level1_links)} level 1 links for {program_url}")
             else:
-                main_content = ""
-                associated_links = {}
+                program_details["main"] = ""
+                level1_links = []
                 logger.warning(f"⚠️ Failed to fetch main program page: {program_url}")
 
-            # Initialize program_details as dict: "main" + "url_1", "url_2", ...
-            program_details = {"main": main_content}
+            # Process level 1
+            url_counter = 1
+            level2_queue = {}  # Temp: {"url_1": [sublinks], ...}
+            for link in level1_links:
+                key = f"url_{url_counter}"
+                associated_links[key] = link
+                link_hierarchy["main"].append(key)
+                link_hierarchy[key] = []  # Init for potential children
+                visited.add(link)
 
-            # Crawl each associated link and store content under matching key
-            for key, url in associated_links.items():
                 await asyncio.sleep(random.uniform(3, 8))
-                result = await fetch_url(crawler, url, crawl_config)
+                result = await fetch_url(crawler, link, crawl_config)
                 content = result.markdown if result and result.markdown else ""
                 program_details[key] = content
                 status = "✅" if content else "⚠️"
-                logger.info(f"{status} Stored content for {key} → {url}")
+                logger.info(f"{status} Stored level 1 content for {key} → {link}")
+
+                # Extract level 2 links
+                sub_links = await extract_links(result, link, visited)
+                level2_queue[key] = sub_links
+                logger.info(f"Found {len(sub_links)} level 2 links from {key}")
+
+                url_counter += 1
+
+            # Process level 2
+            for parent_key, sub_links in level2_queue.items():
+                for sub_link in sub_links:
+                    key = f"url_{url_counter}"
+                    associated_links[key] = sub_link
+                    link_hierarchy[parent_key].append(key)
+                    visited.add(sub_link)
+
+                    await asyncio.sleep(random.uniform(3, 8))
+                    result = await fetch_url(crawler, sub_link, crawl_config)
+                    content = result.markdown if result and result.markdown else ""
+                    program_details[key] = content
+                    status = "✅" if content else "⚠️"
+                    logger.info(f"{status} Stored level 2 content for {key} → {sub_link} (from {parent_key})")
+
+                    url_counter += 1
 
             # Final output
             output_data = {
                 **predefined_data,
-                "associated_links": associated_links,      # {"url_1": "https://...", ...}
-                "program_details": program_details         # {"main": "...", "url_1": "...", "url_2": "..."}
+                "associated_links": associated_links,      # All links: {"url_1": "https://...", ...}
+                "link_hierarchy": link_hierarchy,          # Mapping: {"main": ["url_1", ...], "url_1": ["url_3", ...], ...}
+                "program_details": program_details         # All contents: {"main": "...", "url_1": "...", ...}
             }
 
             js_file = output_dir / f"{uni_name}_{program_name}_scraped.json"
