@@ -1,0 +1,176 @@
+{
+    "university_name": "University of Rhode Island",
+    "university_email": "",
+    "university_rank": "175",
+    "university_url": "https://www.uri.edu/",
+    "university_phone": "",
+    "university_address": "University of Rhode Island, Kingston, RI 02881, USA",
+    "university_campus": "Kingston",
+    "department_url": "https://web.uri.edu/cheme/",
+    "department_name": "Chemical, Biomolecular, and Materials Engineering",
+    "program_url": "https://web.uri.edu/cheme/academics/chemical-engineering-m-s/",
+    "program_type": "Masters",
+    "degree_program": "Graduate",
+    "program_name": "M.S. in Chemical Engineering",
+    "delivery_type": "offline",
+    "session": "Fall/Spring/Summer",
+    "duration": "Full-time: 1.5 – 2 years\nPart-time: 4 years",
+    "scholarship": "TRUE",
+    "useful_links": "",
+    "sitemap": {
+        "base_url": "https://www.uri.edu/",
+        "domain": "www.uri.edu",
+        "total_pages_discovered": 35,
+        "pages_crawled": 2,
+        "url_map": {
+            "root": "https://www.uri.edu/",
+            "url_1": "http://www.uri.edu/",
+            "url_2": "https://www.uri.edu/giving",
+            "url_3": "https://www.uri.edu/news/2025/12/uri-to-celebrate-the-accomplishments-of-more-than-550-graduates-during-fall-commencement",
+            "url_4": "https://www.uri.edu/gateway/future-students",
+            "url_5": "https://www.uri.edu/about",
+            "url_6": "https://www.uri.edu/safety",
+            "url_7": "https://www.uri.edu/gateway/staff",
+            "url_8": "https://www.uri.edu/campus-life",
+            "url_9": "https://www.uri.edu/programs?program-type=33%2C37%2C43%2C45",
+            "url_10": "https://www.uri.edu/tour",
+            "url_11": "https://www.uri.edu/research",
+            "url_12": "https://www.uri.edu/give",
+            "url_13": "https://www.uri.edu/about/campuses",
+            "url_14": "https://www.uri.edu/here",
+            "url_15": "https://www.uri.edu/apply",
+            "url_16": "https://www.uri.edu/athletics",
+            "url_17": "https://www.uri.edu/campus-life/health-and-wellness",
+            "url_18": "https://www.uri.edu/admission",
+            "url_19": "https://www.uri.edu/gateway/faculty",
+            "url_20": "https://www.uri.edu/news/2025/10/uri-once-again-ranked-no-1-public-university-in-new-england-among-nations-best-by-wall-street-journal",
+            "url_21": "https://www.uri.edu/programs?program-type=22%2C44",
+            "url_22": "https://www.uri.edu/news/2025/02/university-of-rhode-island-achieves-prestigious-carnegie-r1-status-ascends-to-top-tier-of-u-s-research-universities",
+            "url_23": "https://www.uri.edu/academics",
+            "url_24": "https://www.uri.edu/gateway/students",
+            "url_25": "https://www.uri.edu/news/2025/12/fall-student-commencement-speakers-to-discuss-finding-their-a-ha-moments-at-uri",
+            "url_26": "https://www.uri.edu/news/2025/12/uris-use-of-artificial-intelligence-in-research-teaching-and-innovation-on-display-at-discovering-ai-uri-day",
+            "url_27": "https://www.uri.edu/news/2025/12/hands-on-research-in-action-cels-to-host-research-and-extension-fellowship-symposium-dec-10",
+            "url_28": "https://www.uri.edu/gateway/families",
+            "url_29": "https://www.uri.edu/wordpress",
+            "url_30": "https://www.uri.edu/gateway/community",
+            "url_31": "https://www.uri.edu/connect",
+            "url_32": "https://www.uri.edu/gateway/alumni",
+            "url_33": "https://www.uri.edu/news",
+            "url_34": "https://www.uri.edu/features"
+        },
+        "connectivity_graph": {
+            "root": [
+                "url_1",
+                "url_2",
+                "url_3",
+                "url_4",
+                "url_5",
+                "url_6",
+                "url_7",
+                "url_8",
+                "url_9",
+                "url_10",
+                "url_11",
+                "url_12",
+                "url_13",
+                "url_14",
+                "url_15",
+                "url_16",
+                "url_17",
+                "url_18",
+                "url_19",
+                "url_20",
+                "url_21",
+                "url_22",
+                "url_23",
+                "url_24",
+                "url_25",
+                "url_26",
+                "url_27",
+                "url_28",
+                "url_29",
+                "url_30",
+                "url_31",
+                "url_32",
+                "url_33",
+                "url_34"
+            ]
+        },
+        "sections": {
+            "root": [
+                "root",
+                "url_1"
+            ],
+            "giving": [
+                "url_2"
+            ],
+            "news": [
+                "url_3",
+                "url_20",
+                "url_22",
+                "url_25",
+                "url_26",
+                "url_27",
+                "url_33"
+            ],
+            "gateway": [
+                "url_4",
+                "url_7",
+                "url_19",
+                "url_24",
+                "url_28",
+                "url_30",
+                "url_32"
+            ],
+            "about": [
+                "url_5",
+                "url_13"
+            ],
+            "safety": [
+                "url_6"
+            ],
+            "campus-life": [
+                "url_8",
+                "url_17"
+            ],
+            "programs": [
+                "url_9",
+                "url_21"
+            ],
+            "tour": [
+                "url_10"
+            ],
+            "research": [
+                "url_11"
+            ],
+            "give": [
+                "url_12"
+            ],
+            "here": [
+                "url_14"
+            ],
+            "apply": [
+                "url_15"
+            ],
+            "athletics": [
+                "url_16"
+            ],
+            "admission": [
+                "url_18"
+            ],
+            "academics": [
+                "url_23"
+            ],
+            "wordpress": [
+                "url_29"
+            ],
+            "connect": [
+                "url_31"
+            ],
+            "features": [
+                "url_34"
+            ]
+        }
+    }
+}

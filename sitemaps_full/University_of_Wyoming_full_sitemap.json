@@ -1,0 +1,525 @@
+{
+    "university_name": "University of Wyoming",
+    "university_email": "",
+    "university_rank": "175",
+    "university_url": "https://www.uwyo.edu/",
+    "university_phone": "(307) 766-1121",
+    "university_address": "1000 E. University Ave\nLaramie, WY 82071",
+    "university_campus": "Laramie",
+    "department_url": "https://www.uwyo.edu/eecs/index.html",
+    "department_name": "Electrical Engineering and Computer Science",
+    "program_url": "https://www.uwyo.edu/uw/degree-programs/computer-science-ms-phd.html",
+    "program_type": "Masters",
+    "degree_program": "Graduate",
+    "program_name": "M.S. in Computer Science",
+    "delivery_type": "offline",
+    "session": "Fall,Spring,Summer",
+    "duration": "",
+    "scholarship": "TRUE",
+    "useful_links": "\"Electrical Engineering and Computer Science Graduate Admission Information:https://www.uwyo.edu/eecs/graduate/admissions.html\",\"Department Graduate Degree Information:https://www.uwyo.edu/eecs/graduate/index.html\"",
+    "sitemap": {
+        "base_url": "https://www.uwyo.edu/",
+        "domain": "www.uwyo.edu",
+        "total_pages_discovered": 132,
+        "pages_crawled": 5,
+        "url_map": {
+            "root": "https://www.uwyo.edu/",
+            "url_1": "https://www.uwyo.edu/uw/aboutuw/about-laramie.html",
+            "url_2": "https://www.uwyo.edu/student-success/resources/academics-tutoring.html",
+            "url_3": "https://www.uwyo.edu/online/programs/bachelor.html",
+            "url_4": "https://www.uwyo.edu/uw/degree-programs/index.html",
+            "url_5": "https://www.uwyo.edu/uw/calendar?trumbaembed=view%3Devent%26eventid%3D189967828",
+            "url_6": "https://www.uwyo.edu/admissions/index.html",
+            "url_7": "https://www.uwyo.edu/honors/index.html",
+            "url_8": "https://www.uwyo.edu/admissions/request-information/index.html",
+            "url_9": "https://www.uwyo.edu/sfa/cost-of-attendance/graduate.html",
+            "url_10": "https://www.uwyo.edu/uw/calendar?trumbaembed=view%3Devent%26eventid%3D189967863",
+            "url_11": "https://www.uwyo.edu/navigate/index.html",
+            "url_12": "https://www.uwyo.edu/web/index.html",
+            "url_13": "https://www.uwyo.edu/shser/index.html",
+            "url_14": "https://www.uwyo.edu/blog/outreach-and-community/football-and-tailgating.html",
+            "url_15": "https://www.uwyo.edu/uw/aboutuw/index.html",
+            "url_16": "https://www.uwyo.edu/rec/index.html",
+            "url_17": "https://www.uwyo.edu/csil/student-orgs/index.html",
+            "url_18": "https://www.uwyo.edu/uw/disclaimer.html",
+            "url_19": "https://www.uwyo.edu/web/support/report-a-broken-hyperlink.html",
+            "url_20": "https://www.uwyo.edu/online/programs/continuing-professional-ed.html",
+            "url_21": "https://www.uwyo.edu/blog/academics-and-career/internships.html",
+            "url_22": "https://www.uwyo.edu/uwyo/index.html",
+            "url_23": "https://www.uwyo.edu/student-success/index.html",
+            "url_24": "https://www.uwyo.edu/uwgrad/enrolled-students/financial-assistance/index.html",
+            "url_25": "https://www.uwyo.edu/transportation/index.html",
+            "url_26": "https://www.uwyo.edu/admissions/transfer/index.html",
+            "url_27": "https://www.uwyo.edu/news/index.html",
+            "url_28": "https://www.uwyo.edu/law/index.html",
+            "url_29": "https://www.uwyo.edu/giveonline",
+            "url_30": "https://www.uwyo.edu/admissions/international/index.html",
+            "url_31": "https://www.uwyo.edu/online/scholarships/index.html",
+            "url_32": "https://www.uwyo.edu/uw/people.html",
+            "url_33": "https://www.uwyo.edu/uw/colleges.html",
+            "url_34": "https://www.uwyo.edu/blog/student-life/thanks-uw.html",
+            "url_35": "https://www.uwyo.edu/uwgrad/graduate-degree-timeline.html",
+            "url_36": "https://www.uwyo.edu/uw/maps/index.html",
+            "url_37": "https://www.uwyo.edu/uwyoabroad/index.html",
+            "url_38": "https://www.uwyo.edu/uwgrad/enrolled-students/gradsuccess.html",
+            "url_39": "https://www.uwyo.edu/ahc/index.html",
+            "url_40": "https://www.uwyo.edu/aces/academic-advising/registering-for-class/index.html",
+            "url_41": "https://www.uwyo.edu/figs/index.html",
+            "url_42": "https://www.uwyo.edu/accreditation/index.html",
+            "url_43": "https://www.uwyo.edu/uw/calendar?trumbaembed=view%3Devent%26eventid%3D190437628",
+            "url_44": "https://www.uwyo.edu/sfa/cost-of-attendance/undergraduate.html",
+            "url_45": "https://www.uwyo.edu/online/programs/index.html",
+            "url_46": "https://www.uwyo.edu/uwgrad/enrolled-students/financial-assistance/assistantship-funding.html",
+            "url_47": "https://www.uwyo.edu/online/programs/doctoral.html",
+            "url_48": "https://www.uwyo.edu/uw/research/undergrad-research.html",
+            "url_49": "https://www.uwyo.edu/sfa/cost-of-attendance/online.html",
+            "url_50": "https://www.uwyo.edu/risk/emergency-preparedness/index.html",
+            "url_51": "https://www.uwyo.edu/hr/prospective/index.html",
+            "url_52": "https://www.uwyo.edu/uw/calendar?trumbaembed=view%3Devent%26eventid%3D189967904",
+            "url_53": "https://www.uwyo.edu/aces/career-services/index.html",
+            "url_54": "https://www.uwyo.edu/online/programs/certificates.html",
+            "url_55": "https://www.uwyo.edu/infotech",
+            "url_56": "https://www.uwyo.edu/geomuseum/index.html",
+            "url_57": "https://www.uwyo.edu/sfa/index.html",
+            "url_58": "https://www.uwyo.edu/admissions/visit/index.html",
+            "url_59": "https://www.uwyo.edu/uw/calendar/index.html",
+            "url_60": "https://www.uwyo.edu/ucc/index.html",
+            "url_61": "https://www.uwyo.edu/online/request-info/index.html",
+            "url_62": "https://www.uwyo.edu/research/index.html",
+            "url_63": "https://www.uwyo.edu/admissions/counselors/index.html",
+            "url_64": "https://www.uwyo.edu/uw/current-students.html",
+            "url_65": "https://www.uwyo.edu/uw/webdirectory/index.html",
+            "url_66": "https://www.uwyo.edu/publicrelations/marketing/uw-brand-center.html",
+            "url_67": "https://www.uwyo.edu/admissions/visit/events/index.html",
+            "url_68": "https://www.uwyo.edu/uw/virtualtour.html",
+            "url_69": "https://www.uwyo.edu/uw/aboutuw/areas-of-excellence.html",
+            "url_70": "https://www.uwyo.edu/hr/index.html",
+            "url_71": "https://www.uwyo.edu/living/index.html",
+            "url_72": "https://www.uwyo.edu/online/programs/master.html",
+            "url_73": "https://www.uwyo.edu/artmuseum/index.html",
+            "url_74": "https://www.uwyo.edu/strategic-plan/index.html",
+            "url_75": "https://www.uwyo.edu/online/index.html",
+            "url_76": "https://www.uwyo.edu/libraries/index.html",
+            "url_77": "https://www.uwyo.edu/uwgrad/enrolled-students/new-students.html",
+            "url_78": "https://www.uwyo.edu/admissions/apply.html",
+            "url_79": "https://www.uwyo.edu/student-success/cowboy-coaches/index.html",
+            "url_80": "https://www.uwyo.edu/uw/calendar?trumbaembed=view%3Devent%26eventid%3D189967858",
+            "url_81": "https://www.uwyo.edu/hr/eeo-aa/accessibility-resources/index.html",
+            "url_82": "https://www.uwyo.edu/online/student-resources/index.html",
+            "url_83": "https://www.uwyo.edu/oia/fact-book.html",
+            "url_84": "https://www.uwyo.edu/reportit/index.html",
+            "url_85": "https://www.uwyo.edu/index.html",
+            "url_86": "https://www.uwyo.edu/admissions/graduate.html",
+            "url_87": "https://www.uwyo.edu/uw/campus-safety.html",
+            "url_88": "https://www.uwyo.edu/uw/calendar?trumbaembed=view%3Devent%26eventid%3D189967856",
+            "url_89": "https://www.uwyo.edu/transportation/transit/airport.html",
+            "url_90": "https://www.uwyo.edu/uw",
+            "url_91": "https://www.uwyo.edu/rec/outdoor-program/_files/docs/laramie-bike-map.pdf",
+            "url_92": "https://www.uwyo.edu/transportation/transit/paratransit.html",
+            "url_93": "https://www.uwyo.edu/blog/student-life/top-10-laramie.html",
+            "url_94": "https://www.uwyo.edu/physics/planetarium/index.html",
+            "url_95": "https://www.uwyo.edu/rec/outdoor-program/index.html",
+            "url_96": "https://www.uwyo.edu/transportation/transit/saferide.html",
+            "url_97": "https://www.uwyo.edu/boxoffice/index.html",
+            "url_98": "https://www.uwyo.edu/transportation/transit/index.html",
+            "url_99": "https://www.uwyo.edu/student-success/resources/index.html",
+            "url_100": "https://www.uwyo.edu/student-success/resources/health-wellness.html",
+            "url_101": "https://www.uwyo.edu/aces/academic-advising/index.html",
+            "url_102": "https://www.uwyo.edu/enterprises/startright/index.html",
+            "url_103": "https://www.uwyo.edu/student-success/resources/food-nutrition.html",
+            "url_104": "https://www.uwyo.edu/student-success/resources/mental-health.html",
+            "url_105": "https://www.uwyo.edu/student-success/resources/housing-finances.html",
+            "url_106": "https://www.uwyo.edu/student-success/resources/career-support.html",
+            "url_107": "https://www.uwyo.edu/udss/index.html",
+            "url_108": "https://www.uwyo.edu/writing-center/index.html",
+            "url_109": "https://www.uwyo.edu/student-success/resources/activities-interests.html",
+            "url_110": "https://www.uwyo.edu/navigate/students.html",
+            "url_111": "https://www.uwyo.edu/step/index.html",
+            "url_112": "https://www.uwyo.edu/student-success",
+            "url_113": "https://www.uwyo.edu/uw/degree-programs/general-studies-bgs.html",
+            "url_114": "https://www.uwyo.edu/uw/degree-programs/organizational-leadership-bas.html",
+            "url_115": "https://www.uwyo.edu/uw/degree-programs/marketing-bachelors.html",
+            "url_116": "https://www.uwyo.edu/uw/degree-programs/accounting-bachelors.html",
+            "url_117": "https://www.uwyo.edu/uw/degree-programs/secondary-education-bachelors.html",
+            "url_118": "https://www.uwyo.edu/uw/degree-programs/bsn-completion.html",
+            "url_119": "https://www.uwyo.edu/uw/degree-programs/criminal-justice-bachelors.html",
+            "url_120": "https://www.uwyo.edu/registrar/sponsored-courses/index.html",
+            "url_121": "https://www.uwyo.edu/registrar/sponsored-courses/professional-development-guidance.html",
+            "url_122": "https://www.uwyo.edu/uw/degree-programs/sociology-bachelors.html",
+            "url_123": "https://www.uwyo.edu/online",
+            "url_124": "https://www.uwyo.edu/uw/degree-programs/medical-laboratory-sciences-bs.html",
+            "url_125": "https://www.uwyo.edu/uw/degree-programs/psychology-bachelors.html",
+            "url_126": "https://www.uwyo.edu/uw/degree-programs/elementary-education-special-education-bachelors.html",
+            "url_127": "https://www.uwyo.edu/uw/degree-programs/software-development-bachelors.html",
+            "url_128": "https://www.uwyo.edu/uw/degree-programs/elementary-education-bachelors.html",
+            "url_129": "https://www.uwyo.edu/uw/degree-programs/dental-hygiene-bsdh.html",
+            "url_130": "https://www.uwyo.edu/registrar/sponsored-courses/professional-development-faqs.html",
+            "url_131": "https://www.uwyo.edu/uw/degree-programs/management-bachelors.html"
+        },
+        "connectivity_graph": {
+            "root": [
+                "url_1",
+                "url_2",
+                "url_3",
+                "url_4",
+                "url_5",
+                "url_6",
+                "url_7",
+                "url_8",
+                "url_9",
+                "url_10",
+                "url_11",
+                "url_12",
+                "url_13",
+                "url_14",
+                "url_15",
+                "url_16",
+                "url_17",
+                "url_18",
+                "url_19",
+                "url_20",
+                "url_21",
+                "url_22",
+                "url_23",
+                "url_24",
+                "url_25",
+                "url_26",
+                "url_27",
+                "url_28",
+                "url_29",
+                "url_30",
+                "url_31",
+                "url_32",
+                "url_33",
+                "url_34",
+                "url_35",
+                "url_36",
+                "url_37",
+                "url_38",
+                "url_39",
+                "url_40",
+                "url_41",
+                "url_42",
+                "url_43",
+                "url_44",
+                "url_45",
+                "url_46",
+                "url_47",
+                "url_48",
+                "url_49",
+                "url_50",
+                "url_51",
+                "url_52",
+                "url_53",
+                "url_54",
+                "url_55",
+                "url_56",
+                "url_57",
+                "url_58",
+                "url_59",
+                "url_60",
+                "url_61",
+                "url_62",
+                "url_63",
+                "url_64",
+                "url_65",
+                "url_66",
+                "url_67",
+                "url_68",
+                "url_69",
+                "url_70",
+                "url_71",
+                "url_72",
+                "url_73",
+                "url_74",
+                "url_75",
+                "url_76",
+                "url_77",
+                "url_78",
+                "url_79",
+                "url_80",
+                "url_81",
+                "url_82",
+                "url_83",
+                "url_84",
+                "url_85",
+                "url_86",
+                "url_87",
+                "url_88"
+            ],
+            "url_1": [
+                "url_89",
+                "url_90",
+                "url_91",
+                "url_92",
+                "url_93",
+                "url_94",
+                "url_95",
+                "url_96",
+                "url_97",
+                "url_98"
+            ],
+            "url_2": [
+                "url_99",
+                "url_100",
+                "url_101",
+                "url_102",
+                "url_103",
+                "url_104",
+                "url_105",
+                "url_106",
+                "url_107",
+                "url_108",
+                "url_109",
+                "url_110",
+                "url_111",
+                "url_112"
+            ],
+            "url_3": [
+                "url_113",
+                "url_114",
+                "url_115",
+                "url_116",
+                "url_117",
+                "url_118",
+                "url_119",
+                "url_120",
+                "url_121",
+                "url_122",
+                "url_123",
+                "url_124",
+                "url_125",
+                "url_126",
+                "url_127",
+                "url_128",
+                "url_129",
+                "url_130",
+                "url_131"
+            ]
+        },
+        "sections": {
+            "root": [
+                "root"
+            ],
+            "uw": [
+                "url_1",
+                "url_4",
+                "url_5",
+                "url_10",
+                "url_15",
+                "url_18",
+                "url_32",
+                "url_33",
+                "url_36",
+                "url_43",
+                "url_48",
+                "url_52",
+                "url_59",
+                "url_64",
+                "url_65",
+                "url_68",
+                "url_69",
+                "url_80",
+                "url_87",
+                "url_88",
+                "url_90",
+                "url_113",
+                "url_114",
+                "url_115",
+                "url_116",
+                "url_117",
+                "url_118",
+                "url_119",
+                "url_122",
+                "url_124",
+                "url_125",
+                "url_126",
+                "url_127",
+                "url_128",
+                "url_129",
+                "url_131"
+            ],
+            "student-success": [
+                "url_2",
+                "url_23",
+                "url_79",
+                "url_99",
+                "url_100",
+                "url_103",
+                "url_104",
+                "url_105",
+                "url_106",
+                "url_109",
+                "url_112"
+            ],
+            "online": [
+                "url_3",
+                "url_20",
+                "url_31",
+                "url_45",
+                "url_47",
+                "url_54",
+                "url_61",
+                "url_72",
+                "url_75",
+                "url_82",
+                "url_123"
+            ],
+            "admissions": [
+                "url_6",
+                "url_8",
+                "url_26",
+                "url_30",
+                "url_58",
+                "url_63",
+                "url_67",
+                "url_78",
+                "url_86"
+            ],
+            "honors": [
+                "url_7"
+            ],
+            "sfa": [
+                "url_9",
+                "url_44",
+                "url_49",
+                "url_57"
+            ],
+            "navigate": [
+                "url_11",
+                "url_110"
+            ],
+            "web": [
+                "url_12",
+                "url_19"
+            ],
+            "shser": [
+                "url_13"
+            ],
+            "blog": [
+                "url_14",
+                "url_21",
+                "url_34",
+                "url_93"
+            ],
+            "rec": [
+                "url_16",
+                "url_91",
+                "url_95"
+            ],
+            "csil": [
+                "url_17"
+            ],
+            "uwyo": [
+                "url_22"
+            ],
+            "uwgrad": [
+                "url_24",
+                "url_35",
+                "url_38",
+                "url_46",
+                "url_77"
+            ],
+            "transportation": [
+                "url_25",
+                "url_89",
+                "url_92",
+                "url_96",
+                "url_98"
+            ],
+            "news": [
+                "url_27"
+            ],
+            "law": [
+                "url_28"
+            ],
+            "giveonline": [
+                "url_29"
+            ],
+            "uwyoabroad": [
+                "url_37"
+            ],
+            "ahc": [
+                "url_39"
+            ],
+            "aces": [
+                "url_40",
+                "url_53",
+                "url_101"
+            ],
+            "figs": [
+                "url_41"
+            ],
+            "accreditation": [
+                "url_42"
+            ],
+            "risk": [
+                "url_50"
+            ],
+            "hr": [
+                "url_51",
+                "url_70",
+                "url_81"
+            ],
+            "infotech": [
+                "url_55"
+            ],
+            "geomuseum": [
+                "url_56"
+            ],
+            "ucc": [
+                "url_60"
+            ],
+            "research": [
+                "url_62"
+            ],
+            "publicrelations": [
+                "url_66"
+            ],
+            "living": [
+                "url_71"
+            ],
+            "artmuseum": [
+                "url_73"
+            ],
+            "strategic-plan": [
+                "url_74"
+            ],
+            "libraries": [
+                "url_76"
+            ],
+            "oia": [
+                "url_83"
+            ],
+            "reportit": [
+                "url_84"
+            ],
+            "index.html": [
+                "url_85"
+            ],
+            "physics": [
+                "url_94"
+            ],
+            "boxoffice": [
+                "url_97"
+            ],
+            "enterprises": [
+                "url_102"
+            ],
+            "udss": [
+                "url_107"
+            ],
+            "writing-center": [
+                "url_108"
+            ],
+            "step": [
+                "url_111"
+            ],
+            "registrar": [
+                "url_120",
+                "url_121",
+                "url_130"
+            ]
+        }
+    }
+}
