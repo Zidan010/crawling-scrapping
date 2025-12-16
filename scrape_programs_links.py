@@ -11,7 +11,7 @@ from urllib.parse import urljoin
 
 # ----------------------------- CONFIG -----------------------------
 CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/input_test.csv"          # Your CSV with degree_program_link column
-CSV_OUTPUT = "extracted_programs.csv"      # Output CSV
+CSV_OUTPUT = "extracted_programs_v2.csv"      # Output CSV
 CHROME_DRIVER_PATH = None                 # Optional: set if not in PATH
 
 # Headless Chrome setup
@@ -141,3 +141,141 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# # #with content 
+# import csv
+# import time
+# import re
+# from pathlib import Path
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+
+# # ----------------------------- CONFIG -----------------------------
+# INPUT_CSV = "extracted_programs_v2.csv"           # Output from reference code
+# OUTPUT_CSV = "extracted_programs_with_content.csv"  # Final with content
+
+# # Chrome setup
+# chrome_options = Options()
+# chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--no-sandbox")
+# chrome_options.add_argument("--disable-dev-shm-usage")
+# chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+# chrome_options.add_argument("--window-size=1920,1080")
+# chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+
+# driver = webdriver.Chrome(options=chrome_options)
+# wait = WebDriverWait(driver, 30)
+
+# # ----------------------------- HELPERS -----------------------------
+# def clean_text(text):
+#     if not text:
+#         return ""
+#     # Replace multiple whitespace/newlines with single space
+#     return re.sub(r'\s+', ' ', text).strip()
+
+# def extract_program_content(program_url):
+#     try:
+#         driver.get(program_url)
+#         time.sleep(4)  # Wait for load
+
+#         # Remove noise
+#         noise_selectors = [
+#             "header", "footer", "nav", "script", "style",
+#             ".sidebar", ".cookie-banner", ".social-share", ".advertisement",
+#             ".related-links", ".breadcrumb"
+#         ]
+#         for sel in noise_selectors:
+#             for elem in driver.find_elements(By.CSS_SELECTOR, sel):
+#                 try:
+#                     driver.execute_script("arguments[0].remove();", elem)
+#                 except:
+#                     pass
+
+#         # Extract meaningful text
+#         content = ""
+#         # Try common containers
+#         containers = driver.find_elements(By.CSS_SELECTOR, "main, .main-content, .content, article, .container, #content")
+#         if not containers:
+#             containers = [driver.find_element(By.TAG_NAME, "body")]
+
+#         for container in containers:
+#             # Get paragraphs and headings
+#             for tag in ["p", "h1", "h2", "h3", "h4", "h5", "h6", "li"]:
+#                 elements = container.find_elements(By.TAG_NAME, tag)
+#                 for elem in elements:
+#                     txt = clean_text(elem.text)
+#                     if txt and len(txt) > 10:  # Filter short noise
+#                         content += txt + "\n\n"
+
+#         if not content.strip():
+#             # Fallback
+#             body_text = driver.find_element(By.TAG_NAME, "body").text
+#             lines = [clean_text(l) for l in body_text.split("\n") if len(clean_text(l)) > 10]
+#             content = "\n\n".join(lines)
+
+#         return content.strip()[:50000]  # Limit size
+
+#     except Exception as e:
+#         return f"Error extracting content: {str(e)}"
+
+# # ----------------------------- MAIN -----------------------------
+# def main():
+#     if not Path(INPUT_CSV).exists():
+#         print(f"Input file not found: {INPUT_CSV}")
+#         print("Please run the reference code first to generate program links.")
+#         return
+
+#     output_path = Path(OUTPUT_CSV)
+#     file_exists = output_path.exists()
+
+#     with open(INPUT_CSV, newline='', encoding='utf-8') as infile, \
+#          open(OUTPUT_CSV, 'a', newline='', encoding='utf-8') as outfile:
+
+#         reader = csv.DictReader(infile)
+#         expected_fields = ["university_name", "degree_program_link", "program_name", "degree_type", "campuses", "program_link"]
+#         fieldnames = expected_fields + ["program_content"]
+
+#         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+#         if not file_exists:
+#             writer.writeheader()
+
+#         processed = 0
+#         batch_count = 0
+
+#         for row in reader:
+#             program_link = row.get("program_link", "").strip()
+#             if not program_link:
+#                 continue
+
+#             print(f"[{processed + 1}] Extracting content → {row['program_name']} ({row['degree_type']})")
+
+#             program_content = extract_program_content(program_link)
+
+#             writer.writerow({
+#                 "university_name": row.get("university_name", ""),
+#                 "degree_program_link": row.get("degree_program_link", ""),
+#                 "program_name": row.get("program_name", ""),
+#                 "degree_type": row.get("degree_type", ""),
+#                 "campuses": row.get("campuses", ""),
+#                 "program_link": program_link,
+#                 "program_content": program_content
+#             })
+
+#             batch_count += 1
+#             if batch_count >= 10:
+#                 outfile.flush()
+#                 print("  → Saved progress (10 programs)")
+#                 batch_count = 0
+
+#             processed += 1
+#             time.sleep(1)  # Polite delay
+
+#     driver.quit()
+#     print(f"\nAll done! {processed} programs with content saved to {OUTPUT_CSV}")
+
+# if __name__ == "__main__":
+#     main()

@@ -6,6 +6,16 @@ __pycache__/
 # C extensions
 *.so
 
+
+
+extracted_structured_json
+extracted_programs_with_content_utulsa.csv
+extracted_programs_utulsa.csv
+extracted_programs_v2.csv
+extracted_programs_with_content_v2.csv
+extracted_programs_with_content.csv
+extracted_programs.csv
+
 # Distribution / packaging
 .Python
 build/
