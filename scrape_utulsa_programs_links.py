@@ -11,7 +11,7 @@ from urllib.parse import urljoin
 
 # ----------------------------- CONFIG -----------------------------
 CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/input_test.csv"
-CSV_OUTPUT = "extracted_programs_utulsa.csv"
+CSV_OUTPUT = "extracted_programs_testtttttt.csv"
 
 # Headless Chrome
 chrome_options = Options()
@@ -154,7 +154,16 @@ def main():
             "accordion_button": None,
             "next_button": None
         }
+    # "uwyo.edu": {  # University of Wyoming
+    #         "card_selector": ".program-card",
+    #         "name_selector": {"type": "accordion_header"},
+    #         "campus_selector": ".category-tag span",
+    #         "link_selector": "a.hyperlink-arrow",
+    #         "accordion_button": ".accordion-button.collapsed",
+    #         "next_button": ".btn-next:not(.disabled) a"
+    #     }
     }
+
 
     output_path = Path(CSV_OUTPUT)
     file_exists = output_path.exists()

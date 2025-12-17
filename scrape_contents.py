@@ -39,17 +39,16 @@ crawl_config = CrawlerRunConfig(
 # ----------------------------------------------------------
 # Input / Output paths
 # ----------------------------------------------------------
-INPUT_CSV = "extracted_programs_utulsa.csv"               # ← Output from your first script
-OUTPUT_CSV = "extracted_programs_with_content_utulsa.csv"   # ← Final CSV with content
-
+INPUT_CSV = "extracted_programs_testtttttt.csv"               # ← Output from your first script
+OUTPUT_CSV = "extracted_programs_with_content_testtttttt.csv"   # ← Final CSV with content
 # ----------------------------------------------------------
 # Fetch with retry + fallback (same as your reference)
 # ----------------------------------------------------------
 async def fetch_url(crawler, url: str, retries=3, base_delay=5):
-    blocked_domains = ["utulsa.edu"]
-    if any(domain in url for domain in blocked_domains):
-        logger.warning(f"Skipping blocked domain: {url}")
-        return ""
+    # blocked_domains = [""]
+    # if any(domain in url for domain in blocked_domains):
+    #     logger.warning(f"Skipping blocked domain: {url}")
+    #     return ""
 
     for attempt in range(retries):
         try:
