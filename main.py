@@ -6,10 +6,10 @@ import os
 STATE_FILE = "pipeline_state.json"
 
 # ----------------------------- CONFIG -----------------------------
-INPUT_FROM_SCRIPT1 = "extracted_programs_testtttttt.csv"
+INPUT_FROM_SCRIPT1 = "extracted_programs_rhode.csv"
 
 # Same file used by both Script 2 (output) and Script 3 (input)
-CONTENT_CSV = "extracted_programs_with_content_testtttttt.csv"
+CONTENT_CSV = "extracted_programs_with_content_rhode.csv"
 
 # -------------------------------------------------------------
 

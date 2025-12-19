@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urljoin
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/input_test.csv"
-CSV_OUTPUT = "extracted_programs_testtttttt.csv"
+CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/utulsa_input.csv"
+CSV_OUTPUT = "extracted_programs_utulsa.csv"
 
 # Headless Chrome
 chrome_options = Options()

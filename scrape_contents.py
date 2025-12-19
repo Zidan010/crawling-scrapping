@@ -39,8 +39,8 @@ crawl_config = CrawlerRunConfig(
 # ----------------------------------------------------------
 # Input / Output paths
 # ----------------------------------------------------------
-INPUT_CSV = "extracted_programs_testtttttt.csv"               # ← Output from your first script
-OUTPUT_CSV = "extracted_programs_with_content_testtttttt.csv"   # ← Final CSV with content
+INPUT_CSV = "extracted_programs_rhode.csv"               # ← Output from your first script
+OUTPUT_CSV = "extracted_programs_with_content_rhode.csv"   # ← Final CSV with content
 # ----------------------------------------------------------
 # Fetch with retry + fallback (same as your reference)
 # ----------------------------------------------------------

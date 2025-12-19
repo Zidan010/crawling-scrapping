@@ -5,19 +5,15 @@ __pycache__/
 
 # C extensions
 *.so
-extracted_structured_json_testtttttt
-extracted_programs_testtttttt.csv
-extracted_structured_json_new
-extracted_structured_json
-extracted_programs_with_content_utulsa.csv
-extracted_programs_utulsa.csv
-extracted_programs_v2.csv
-extracted_programs_with_content_v2.csv
-extracted_programs_with_content.csv
-extracted_programs.csv
-extracted_programs_with_content_testtttttt.csv
-pipeline_state.json
 
+extracted_programs_wyoming.csv
+extracted_programs_with_content_wyoming.csv
+extracted_structured_json_wyoming/
+extracted_programs_utulsa.csv
+extracted_programs_with_content_utulsa.csv
+extracted_structured_json/
+extracted_programs_rhode.csv
+extracted_programs_rhode_with_content.csv
 # Distribution / packaging
 .Python
 build/
