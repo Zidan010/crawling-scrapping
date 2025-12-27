@@ -52,8 +52,8 @@ def map_degree_type(degree_name: str) -> str:
     return ""
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_programs_with_content_uidaho_latest.csv"
-OUTPUT_DIR = Path("/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_structured_json_uidaho_latest")
+CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_programs_with_content_ualabama_latest.csv"
+OUTPUT_DIR = Path("/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_structured_json_ualabama_latest")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ----------------------------- CONTENT CLEANING AND SPLITTING -----------------------------
@@ -402,7 +402,6 @@ Content:
 Return ONLY: {{"languageRequirements": []}}"""
     return call_deepseek(prompt)
 
-
 def extract_degree_requirements(content: str) -> Dict:
     prompt = f"""You are an expert extractor. Return ONLY valid JSON object.
 Extract degreeRequirements as list of dicts.
@@ -415,7 +414,7 @@ CRITICAL RULES:
    - If this is a Master's program → the GPA likely refers to Bachelor's degree requirement
    - If this is a PhD program → the GPA likely refers to Master's degree requirement
    - If this is a Bachelor's program → the GPA likely refers to High School/A Level requirement
-5. If you cannot determine the degree level from context, use generic descriptions like "Previous degree" or "Undergraduate degree" or empty ""
+5. If you cannot determine the degree level from context, use generic descriptions like "Previous degree" or "Undergraduate degree"
 
 IMPORTANT: Keep 'total' and 'outOf' as EXACT numbers from content. Do not modify numeric values.
 
@@ -488,7 +487,6 @@ Content:
 Return ONLY: {{"degreeRequirements": []}}"""
     return call_deepseek(prompt)
 
-
 def extract_scholarships(content: str) -> Dict:
     prompt = f"""You are an expert extractor. Return ONLY valid JSON object.
 Extract scholarships as list of dicts.
@@ -531,7 +529,7 @@ Example:
 - detail: "Find information on FAFSA deadlines, scholarship opportunities, and financial aid options to help you fund your education."
 - webLink: "https://..." (EXACT)
 
-Extract only relevant links: scholarship pages, requirements pages, tuition/cost info, financial aid, admissions, application pages.
+Extract only relevant links: scholarship pages, requirements pages, tuition/cost of attendance info, financial aid, admissions, application, how to apply pages.
 Empty list if none.
 Content:
 {content}
@@ -560,13 +558,35 @@ def main():
         # Extract all sections separately with chunks
         extracted = {}
         campus_extracted = {}
+        
+        # CSV-first approach: Check CSV columns BEFORE extracting
+        csv_program_name = row.get("program_name", "").strip()
+        csv_degree_name = row.get("degree_type", "").strip()
+        csv_department = row.get("department", "").strip()
+        
         if chunks:
             print(f"[{idx}] Extracting from {len(chunks)} chunks...")
-            program_degree_results = run_extraction(extract_program_degree, chunks)
-            program_name_vals = [r.get("program_name") for r in program_degree_results if r.get("program_name")]
-            degree_name_vals = [r.get("degree_name") for r in program_degree_results if r.get("degree_name")]
-            extracted["program_name"] = program_name_vals[0] if program_name_vals else ""
-            extracted["degree_name"] = degree_name_vals[0] if degree_name_vals else ""
+            
+            # Only extract program/degree if NOT in CSV
+            if csv_program_name:
+                print(f"    ✓ Using program_name from CSV: {csv_program_name}")
+                extracted["program_name"] = csv_program_name
+            else:
+                program_degree_results = run_extraction(extract_program_degree, chunks)
+                program_name_vals = [r.get("program_name") for r in program_degree_results if r.get("program_name")]
+                extracted["program_name"] = program_name_vals[0] if program_name_vals else ""
+            
+            if csv_degree_name:
+                print(f"    ✓ Using degree_name from CSV: {csv_degree_name}")
+                extracted["degree_name"] = csv_degree_name
+            else:
+                if not csv_program_name:  # If we didn't extract program name, we already have degree results
+                    degree_name_vals = [r.get("degree_name") for r in program_degree_results if r.get("degree_name")]
+                    extracted["degree_name"] = degree_name_vals[0] if degree_name_vals else ""
+                else:  # Need to extract degree name separately
+                    program_degree_results = run_extraction(extract_program_degree, chunks)
+                    degree_name_vals = [r.get("degree_name") for r in program_degree_results if r.get("degree_name")]
+                    extracted["degree_name"] = degree_name_vals[0] if degree_name_vals else ""
             session_duration_results = run_extraction(extract_session_duration_delivery, chunks)
             extracted["durationYear"] = merge_extracted(session_duration_results, "durationYear", is_scalar=True)
             extracted["deliveryType"] = merge_extracted(session_duration_results, "deliveryType")
@@ -577,21 +597,62 @@ def main():
             extracted["applicationFee"] = merge_extracted(fee_results, "applicationFee")
             extracted["howToApply"] = merge_extracted(run_extraction(extract_how_to_apply, chunks), "howToApply")
             extracted["admissionProgramTypes"] = merge_extracted(run_extraction(extract_admission_program_types, chunks), "admissionProgramTypes")
+            
+            # Add CSV department to admissionProgramTypes
+            if csv_department:
+                print(f"    ✓ Using department from CSV: {csv_department}")
+                if extracted["admissionProgramTypes"]:
+                    # Add CSV department to all program types
+                    for prog_type in extracted["admissionProgramTypes"]:
+                        prog_type["department"] = csv_department
+                else:
+                    # No program types extracted, create minimal entry with CSV department
+                    extracted["admissionProgramTypes"] = [{
+                        "type": "",
+                        "overview": "",
+                        "department": csv_department,
+                        "courseOutline": []
+                    }]
             extracted["generalRequirements"] = merge_extracted(run_extraction(extract_general_requirements, chunks), "generalRequirements")
             extracted["standardizedRequirements"] = merge_extracted(run_extraction(extract_standardized_requirements, chunks), "standardizedRequirements")
             extracted["languageRequirements"] = merge_extracted(run_extraction(extract_language_requirements, chunks), "languageRequirements")
             extracted["degreeRequirements"] = merge_extracted(run_extraction(extract_degree_requirements, chunks), "degreeRequirements")
             extracted["scholarships"] = merge_extracted(run_extraction(extract_scholarships, chunks), "scholarships")
             extracted["usefulLink"] = merge_extracted(run_extraction(extract_useful_links, chunks), "usefulLink")
-            # Extract campus at the end
-            campus_results = run_extraction(extract_campus_info, chunks)
-            campus_extracted = {}
-            for field in ["name", "webUrl", "email", "phone", "country", "city", "zipCode", "address"]:
-                vals = [r.get(field) for r in campus_results if r.get(field)]
-                campus_extracted[field] = vals[0] if vals else ""
-        # Use extracted or CSV
-        final_program_name = extracted.get("program_name", csv_program_name) or "Unknown Program"
-        final_degree_name = extracted.get("degree_name", csv_degree_type) or ""
+            # Extract campus - CSV first for each field
+            # Map CSV columns to campus fields
+            csv_campus_map = {
+                "name": row.get("campus_name", "").strip(),
+                "webUrl": row.get("url", "").strip(),
+                "email": row.get("email", "").strip(),
+                "phone": row.get("phone", "").strip(),
+                "country": row.get("country", "").strip(),
+                "city": row.get("city", "").strip(),
+                "zipCode": row.get("zipCode", "").strip(),
+                "address": row.get("address", "").strip()
+            }
+            
+            # Check which fields need LLM extraction
+            need_campus_extraction = any(not val for val in csv_campus_map.values())
+            
+            if need_campus_extraction:
+                campus_results = run_extraction(extract_campus_info, chunks)
+                for field, csv_val in csv_campus_map.items():
+                    if csv_val:
+                        # Use CSV value
+                        campus_extracted[field] = csv_val
+                        print(f"    ✓ Using campus.{field} from CSV")
+                    else:
+                        # Extract from content
+                        vals = [r.get(field) for r in campus_results if r.get(field)]
+                        campus_extracted[field] = vals[0] if vals else ""
+            else:
+                # All campus data in CSV, skip extraction
+                print(f"    ✓ Using all campus data from CSV")
+                campus_extracted = csv_campus_map
+        # Use CSV first, then extracted values as fallback
+        final_program_name = csv_program_name or extracted.get("program_name", "") or "Unknown Program"
+        final_degree_name = csv_degree_name or extracted.get("degree_name", "") or ""
         safe_uni = clean_filename(university_name)
         safe_prog = clean_filename(final_program_name)
         safe_deg = clean_filename(final_degree_name) if final_degree_name else ""
@@ -633,14 +694,14 @@ def main():
                 "name": university_name,
                 "ranks": [],
                 "campus": {
-                    "name": campus_extracted.get("name", "") or row.get("campus_name", ""),
-                    "webUrl": campus_extracted.get("webUrl", "") or row.get("url", ""),
-                    "email": campus_extracted.get("email", "") or row.get("email", ""),
-                    "phone": campus_extracted.get("phone", "") or row.get("phone", ""),
-                    "country": campus_extracted.get("country", "") or row.get("country", ""),
-                    "city": campus_extracted.get("city", "") or row.get("city", ""),
-                    "zipCode": campus_extracted.get("zipCode", "") or row.get("zipCode", ""),
-                    "address": campus_extracted.get("address", "") or row.get("address", "")
+                    "name": campus_extracted.get("name", ""),
+                    "webUrl": campus_extracted.get("webUrl", ""),
+                    "email": campus_extracted.get("email", ""),
+                    "phone": campus_extracted.get("phone", ""),
+                    "country": campus_extracted.get("country", ""),
+                    "city": campus_extracted.get("city", ""),
+                    "zipCode": campus_extracted.get("zipCode", ""),
+                    "address": campus_extracted.get("address", "")
                 }
             },
             "programUrl": row.get("programUrl", ""),

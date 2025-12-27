@@ -40,8 +40,8 @@ crawl_config = CrawlerRunConfig(
 # ----------------------------------------------------------
 # Input / Output paths
 # ----------------------------------------------------------
-INPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_programs_ualabama_latest.csv"               # ← Output from your first script
-OUTPUT_CSV = "extracted_programs_with_content_ualabama_latest.csv"   # ← Final CSV with content
+INPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/data_with_program_content/extracted_programs_wyoming_latest.csv"               # ← Output from your first script
+OUTPUT_CSV = "extracted_programs_with_content_wyoming_latest.csv"   # ← Final CSV with content
 # ----------------------------------------------------------
 # Fetch with retry + fallback (same as your reference)
 # ----------------------------------------------------------

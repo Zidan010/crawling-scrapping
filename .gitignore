@@ -29,10 +29,10 @@ extracted_programs_with_content_ualabama.csv
 extracted_programs_with_content_uidaho_latest.csv
 extracted_programs_with_content_uidaho.csv
 extracted_programs_with_content_rhode.csv
-
-
-
-
+input_files-with_all_program
+data_with_program_content
+extracted_structured_json_ualabama_latest
+extracted_programs_with_content_wyoming_latest.csv
 # Distribution / packaging
 .Python
 build/

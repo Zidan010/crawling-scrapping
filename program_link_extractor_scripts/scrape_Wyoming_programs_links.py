@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import urljoin
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/input_test.csv"
-CSV_OUTPUT = "extracted_programs_wyoming.csv"      # Will contain ALL input columns + scraped ones
+CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/input_files-with_all_program/wyoming_input_latest.csv"
+CSV_OUTPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/data_with_program_content/extracted_programs_wyoming_latest.csv"      # Will contain ALL input columns + scraped ones
 
 # Headless Chrome setup
 chrome_options = Options()
@@ -77,8 +77,8 @@ def extract_programs_from_page(page_url):
                 programs.append({
                     "program_name": program_name,
                     "degree_type": degree_type,
-                    "campuses": campuses,
-                    "program_link": full_link
+                    "campus_name": campuses,
+                    "programUrl": full_link
                 })
             except Exception as e:
                 print(f"      Card extraction error: {e}")
@@ -121,7 +121,7 @@ def main():
         input_fieldnames = reader.fieldnames
 
         # Define scraped fields to add
-        scraped_fields = ["program_name", "degree_type", "campuses", "program_link"]
+        scraped_fields = ["program_name", "degree_type", "campus_name", "programUrl"]
 
         # Final output columns: all input + scraped (avoid duplicates)
         output_fieldnames = input_fieldnames + [f for f in scraped_fields if f not in input_fieldnames]
@@ -160,8 +160,8 @@ def main():
                             output_row.update({
                                 "program_name": prog["program_name"],
                                 "degree_type": prog["degree_type"],
-                                "campuses": prog["campuses"],
-                                "program_link": prog["program_link"]
+                                "campus_name": prog["campus_name"],
+                                "programUrl": prog["programUrl"]
                             })
                             writer.writerow(output_row)
                             batch_count += 1
