@@ -640,8 +640,8 @@ import os
 load_dotenv()
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "extracted_programs_with_content_wyoming.csv"
-OUTPUT_DIR = Path("extracted_structured_json_wyoming")
+CSV_INPUT = "extracted_programs_with_content_uidaho.csv"
+OUTPUT_DIR = Path("extracted_structured_json_uidaho")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")

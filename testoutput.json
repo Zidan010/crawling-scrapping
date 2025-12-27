@@ -1,0 +1,32 @@
+[
+  {
+    "program": {
+      "name": "",
+      "code": "",
+      "synonyms": ""
+    },
+    "degree": {
+      "name": "Accounting, B.S.B.A.",
+      "code": "",
+      "type": "Bachelor, Master",
+      "synonyms": ""
+    },
+    "tuition": {
+      "amount": "",
+      "currency": "",
+      "region": ""
+    },
+    "applicationFee": {
+      "amount": "",
+      "currency": "",
+      "region": ""
+    },
+    "scholarship": {
+      "name": "",
+      "amount": "",
+      "currency": "",
+      "deadline": ""
+    },
+    "confidence": 0.2
+  }
+]

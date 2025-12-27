@@ -14,6 +14,25 @@ extracted_programs_with_content_utulsa.csv
 extracted_structured_json/
 extracted_programs_rhode.csv
 extracted_programs_rhode_with_content.csv
+extracted_structured_json_uidaho_latest
+extracted_structured_json_utulsa
+extracted_structured_json_rhode
+extracted_structured_json_test_deepseek
+extracted_structured_json_test_deepseek_2
+extracted_structured_json_uidaho
+extracted_programs_ualabama_latest.csv
+extracted_programs_ualabama.csv
+extracted_programs_uidaho_latest.csv
+extracted_programs_uidaho.csv
+extracted_programs_with_content_ualabama_latest.csv
+extracted_programs_with_content_ualabama.csv
+extracted_programs_with_content_uidaho_latest.csv
+extracted_programs_with_content_uidaho.csv
+extracted_programs_with_content_rhode.csv
+
+
+
+
 # Distribution / packaging
 .Python
 build/

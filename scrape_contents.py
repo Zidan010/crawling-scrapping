@@ -30,7 +30,8 @@ crawl_config = CrawlerRunConfig(
     scroll_delay=2.0,
     page_timeout=120000,
     wait_for_timeout=30,
-    excluded_tags=["form", "header", "footer", "nav", "img", "script", "style"],
+    # excluded_tags=["form", "header", "footer", "nav", "img", "script", "style"],
+    excluded_tags=["form","nav", "img", "script", "style"],
     exclude_social_media_links=True,
     exclude_external_images=True,
     exclude_external_links=True,
@@ -39,8 +40,8 @@ crawl_config = CrawlerRunConfig(
 # ----------------------------------------------------------
 # Input / Output paths
 # ----------------------------------------------------------
-INPUT_CSV = "extracted_programs_rhode.csv"               # ← Output from your first script
-OUTPUT_CSV = "extracted_programs_with_content_rhode.csv"   # ← Final CSV with content
+INPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_programs_ualabama_latest.csv"               # ← Output from your first script
+OUTPUT_CSV = "extracted_programs_with_content_ualabama_latest.csv"   # ← Final CSV with content
 # ----------------------------------------------------------
 # Fetch with retry + fallback (same as your reference)
 # ----------------------------------------------------------
@@ -110,9 +111,9 @@ async def main():
             batch_count = 0
 
             for idx, row in enumerate(rows, 1):
-                program_link = row.get("program_link", "").strip()
+                program_link = row.get("programUrl", "").strip()
                 if not program_link:
-                    logger.warning(f"Row {idx}: No program_link, skipping")
+                    logger.warning(f"Row {idx}: No programUrl, skipping")
                     continue
 
                 program_name = row.get("program_name", "unknown")
