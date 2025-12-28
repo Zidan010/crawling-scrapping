@@ -52,8 +52,8 @@ def map_degree_type(degree_name: str) -> str:
     return ""
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_programs_with_content_ualabama_latest.csv"
-OUTPUT_DIR = Path("/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/extracted_structured_json_ualabama_latest")
+CSV_INPUT = "../crawling-scrapping/phase-2_output_data_with_program_content_phase-3_input/extracted_programs_with_content_wyoming_latest.csv"
+OUTPUT_DIR = Path("../crawling-scrapping/phase-3_output_final_program_data/extracted_structured_json_wyoming_latest")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ----------------------------- CONTENT CLEANING AND SPLITTING -----------------------------
