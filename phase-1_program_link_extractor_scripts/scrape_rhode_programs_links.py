@@ -9,8 +9,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/rhode_input.csv"
-CSV_OUTPUT = "extracted_programs_rhode.csv"
+CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/phase-1_input_files/rhode_input_latest.csv"
+CSV_OUTPUT = "../crawling-scrapping/phase-1_output_files_phase-2_input/extracted_programs_rhode_latest.csv"
 
 # Headless Chrome setup
 chrome_options = Options()
@@ -90,8 +90,8 @@ def extract_programs_from_page(page_url):
                 programs.append({
                     "program_name": program_name,
                     "degree_type": degree_type,
-                    "campuses": campuses,
-                    "program_link": program_link
+                    "campus_name": campuses,
+                    "programUrl": program_link
                 })
 
         except Exception as e:
@@ -115,7 +115,7 @@ def main():
         reader = csv.DictReader(infile)
         input_fieldnames = reader.fieldnames
 
-        scraped_fields = ["program_name", "degree_type", "campuses", "program_link"]
+        scraped_fields = ["program_name", "degree_type", "campus_name", "programUrl"]
         output_fieldnames = input_fieldnames + [f for f in scraped_fields if f not in input_fieldnames]
 
         with open(output_path, 'a', newline='', encoding='utf-8') as outfile:

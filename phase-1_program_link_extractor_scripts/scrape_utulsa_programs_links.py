@@ -7,13 +7,12 @@
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
-# from urllib.parse import urljoin
 
 # # ----------------------------- CONFIG -----------------------------
-# CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/utulsa_input.csv"
-# CSV_OUTPUT = "extracted_programs_utulsa.csv"
+# CSV_INPUT = "../crawling-scrapping/phase-1_input_files/utulsa_input_latest.csv"
+# CSV_OUTPUT = "../crawling-scrapping/phase-1_output_files_phase-2_input/extracted_programs_utulsa_latest.csv"
 
-# # Headless Chrome
+# # Headless Chrome setup
 # chrome_options = Options()
 # chrome_options.add_argument("--headless")
 # chrome_options.add_argument("--no-sandbox")
@@ -23,213 +22,144 @@
 # chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.6312.86 Safari/537.36")
 
 # driver = webdriver.Chrome(options=chrome_options)
+# wait = WebDriverWait(driver, 30)
 
 # # ----------------------------- HELPERS -----------------------------
 # def clean_text(text):
 #     return re.sub(r'\s+', ' ', text).strip() if text else ""
 
-# # ----------------------------- DYNAMIC EXTRACTION FUNCTION -----------------------------
-# def extract_programs_from_page(page_url, config):
-#     """
-#     Extract programs using a configurable selector setup.
-    
-#     config keys:
-#         card_selector: str - CSS selector for each program card/container
-#         name_selector: dict - how to get program name (e.g., {"parent": "ancestor accordion", "elements": "span"})
-#         degree_selector: str or None - CSS selector for degree type
-#         campus_selector: str - CSS selector for campus/delivery tags
-#         link_selector: str - CSS selector for the detail page link
-#         accordion_button: str - CSS selector for accordion toggle buttons
-#         next_button: str - CSS selector for pagination "Next" button
-#     """
+# def extract_programs_from_page(page_url):
+#     print(f"    Loading page: {page_url}")
 #     driver.get(page_url)
-#     wait = WebDriverWait(driver, 30)
+    
+#     # Wait for program cards to appear
+#     try:
+#         wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".explorer-card__anchor")))
+#         print("    Found program cards (.explorer-card__anchor)")
+#     except:
+#         print("    ERROR: Could not find program cards — page structure changed or blocked?")
+#         return []
+
+#     # Scroll to load all lazy-loaded content (if any)
+#     print("    Scrolling to ensure all programs are loaded...")
+#     last_height = driver.execute_script("return document.body.scrollHeight")
+#     while True:
+#         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+#         time.sleep(2)
+#         new_height = driver.execute_script("return document.body.scrollHeight")
+#         if new_height == last_height:
+#             break
+#         last_height = new_height
+
+#     time.sleep(2)  # Final wait
+
+#     # Extract all cards
+#     cards = driver.find_elements(By.CSS_SELECTOR, ".explorer-card__anchor")
+#     print(f"    Found {len(cards)} program cards")
 
 #     programs = []
+#     for card in cards:
+#         try:
+#             # Program name
+#             name_elem = card.find_element(By.CSS_SELECTOR, "h3.explorer-card__section__entry-header")
+#             program_name = clean_text(name_elem.text)
 
-#     # Wait for first card
-#     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, config["card_selector"])))
+#             # Degree type — not explicitly marked, so leave empty or infer if needed
+#             degree_type = ""
 
-#     # Expand accordions if needed
-#     if config.get("accordion_button"):
-#         while True:
-#             collapsed = driver.find_elements(By.CSS_SELECTOR, config["accordion_button"])
-#             if not collapsed:
-#                 break
-#             for btn in collapsed:
-#                 try:
-#                     driver.execute_script("arguments[0].scrollIntoView(true);", btn)
-#                     driver.execute_script("arguments[0].click();", btn)
-#                     time.sleep(0.6)
-#                 except:
-#                     pass
-#         time.sleep(2)
+#             # Campus / Delivery format
+#             campuses = "Not specified"
+#             format_elems = card.find_elements(By.CSS_SELECTOR, ".explorer-card__section__program-format")
+#             if format_elems:
+#                 campuses = ", ".join([clean_text(e.text) for e in format_elems if e.text.strip()])
 
-#     page_num = 1
-#     while True:
-#         print(f"    Scraping page {page_num}...")
-#         cards = driver.find_elements(By.CSS_SELECTOR, config["card_selector"])
+#             # Program link — the card itself is the <a>
+#             program_link = card.get_attribute("href")
 
-#         for card in cards:
-#             try:
-#                 # Program Name
-#                 if config["name_selector"]["type"] == "accordion_header":
-#                     header = card.find_element(By.XPATH, "./ancestor::div[contains(@class,'accordion-item')]//h2//button")
-#                     name_elements = header.find_elements(By.TAG_NAME, "span")
-#                     program_name = clean_text(name_elements[0].text) if name_elements else ""
-#                     degree_type = clean_text(name_elements[1].text if len(name_elements) > 1 else "")
-#                 else:
-#                     # Generic fallback
-#                     name_elem = card.find_element(By.CSS_SELECTOR, config["name_selector"]["selector"])
-#                     program_name = clean_text(name_elem.text)
-#                     degree_type = ""
-
-#                 # Campuses / Delivery
-#                 campuses = "Not specified"
-#                 if config.get("campus_selector"):
-#                     tags = card.find_elements(By.CSS_SELECTOR, config["campus_selector"])
-#                     campuses = ", ".join([clean_text(t.text) for t in tags if t.text.strip()])
-
-#                 # Program Link
-#                 # link_elem = card.find_element(By.CSS_SELECTOR, config["link_selector"])
-#                 # program_link = urljoin(page_url, link_elem.get_attribute("href"))
-
-#                 # Program Link
-#                 try:
-#                     if config["link_selector"] == ".explorer-card__anchor":
-#                         # Special case for UTulsa: the card itself is the link
-#                         program_link = card.get_attribute("href")
-#                     else:
-#                         link_elem = card.find_element(By.CSS_SELECTOR, config["link_selector"])
-#                         program_link = urljoin(page_url, link_elem.get_attribute("href"))
-#                     program_link = program_link or ""
-#                 except:
-#                     program_link = ""
-
-
+#             if program_name and program_link:
 #                 programs.append({
 #                     "program_name": program_name,
 #                     "degree_type": degree_type,
-#                     "campuses": campuses,
-#                     "program_link": program_link
+#                     "campus_name": campuses,
+#                     "first_layer": program_link
 #                 })
 
-#             except Exception as e:
-#                 print(f"      Card error: {e}")
-#                 continue
-
-#         # Pagination
-#         if not config.get("next_button"):
-#             break
-
-#         try:
-#             next_btn = driver.find_element(By.CSS_SELECTOR, config["next_button"])
-#             if "disabled" in next_btn.get_attribute("class") or not next_btn.is_enabled():
-#                 break
-#             driver.execute_script("arguments[0].scrollIntoView(true);", next_btn)
-#             driver.execute_script("arguments[0].click();", next_btn)
-#             time.sleep(4)
-#             page_num += 1
-#         except:
-#             break
+#         except Exception as e:
+#             print(f"      Warning: Failed to parse one card → {e}")
+#             continue
 
 #     return programs
 
 # # ----------------------------- MAIN -----------------------------
 # def main():
-#     if not Path(CSV_INPUT).exists():
-#         print("CSV not found")
+#     input_path = Path(CSV_INPUT)
+#     output_path = Path(CSV_OUTPUT)
+
+#     if not input_path.exists():
+#         print(f"Input CSV not found: {CSV_INPUT}")
 #         return
 
-#     # Example configs — add more as needed
-#     UNIVERSITY_CONFIGS = {
-#         "utulsa.edu": {  # ← NEW: University of Tulsa
-#             "card_selector": ".explorer-card__anchor",
-#             "name_selector": {
-#                 "type": "direct",
-#                 "selector": "h3.explorer-card__section__entry-header"
-#             },
-#             "campus_selector": ".explorer-card__section__program-format",
-#             "link_selector": ".explorer-card__anchor",  # The card itself is the link
-#             "accordion_button": None,
-#             "next_button": None
-#         }
-#     # "uwyo.edu": {  # University of Wyoming
-#     #         "card_selector": ".program-card",
-#     #         "name_selector": {"type": "accordion_header"},
-#     #         "campus_selector": ".category-tag span",
-#     #         "link_selector": "a.hyperlink-arrow",
-#     #         "accordion_button": ".accordion-button.collapsed",
-#     #         "next_button": ".btn-next:not(.disabled) a"
-#     #     }
-#     }
-
-
-#     output_path = Path(CSV_OUTPUT)
 #     file_exists = output_path.exists()
 
-#     with open(CSV_INPUT, newline='', encoding='utf-8') as infile:
+#     # Read input to preserve original columns
+#     with open(input_path, newline='', encoding='utf-8') as infile:
 #         reader = csv.DictReader(infile)
-#         fieldnames = ["university_name", "degree_program_link", "program_name", "degree_type", "campuses", "program_link"]
+#         input_fieldnames = reader.fieldnames  # All original columns
+
+#         scraped_fields = ["program_name", "degree_type", "campus_name", "first_layer"]
+#         output_fieldnames = input_fieldnames + [f for f in scraped_fields if f not in input_fieldnames]
+
+#     # Now process
+#     with open(input_path, newline='', encoding='utf-8') as infile:
+#         reader = csv.DictReader(infile)
 
 #         with open(output_path, 'a', newline='', encoding='utf-8') as outfile:
-#             writer = csv.DictWriter(outfile, fieldnames=fieldnames)
+#             writer = csv.DictWriter(outfile, fieldnames=output_fieldnames)
 #             if not file_exists:
 #                 writer.writeheader()
 
-#             batch = 0
-
 #             for row in reader:
-#                 uni_name = row.get("university_name", "").strip()
 #                 listing_url = row.get("degree_program_link", "").strip()
+#                 uni_name = row.get("university_name", "Unknown University")
+
 #                 if not listing_url:
+#                     print("Skipping row — no degree_program_link")
 #                     continue
 
-#                 # Auto-detect config by domain
-#                 from urllib.parse import urlparse
-#                 domain = urlparse(listing_url).netloc
-#                 config = None
-#                 for key in UNIVERSITY_CONFIGS:
-#                     if key in domain:
-#                         config = UNIVERSITY_CONFIGS[key]
-#                         break
-
-#                 if not config:
-#                     print(f"No config for domain: {domain} — skipping {listing_url}")
-#                     continue
-
-#                 print(f"\n=== {uni_name} ===\n{listing_url}")
+#                 print(f"\n=== {uni_name} ===")
+#                 print(f"URL: {listing_url}")
 
 #                 try:
-#                     programs = extract_programs_from_page(listing_url, config)
+#                     programs = extract_programs_from_page(listing_url)
 
-#                     for p in programs:
-#                         writer.writerow({
-#                             "university_name": uni_name,
-#                             "degree_program_link": listing_url,
-#                             "program_name": p["program_name"],
-#                             "degree_type": p["degree_type"],
-#                             "campuses": p["campuses"],
-#                             "program_link": p["program_link"]
-#                         })
-#                         batch += 1
-#                         if batch >= 10:
-#                             outfile.flush()
-#                             print("  → Saved 10 programs")
-#                             batch = 0
+#                     if not programs:
+#                         print("  → No programs extracted.")
+#                         # Still write original row with empty scraped fields
+#                         output_row = row.copy()
+#                         for field in scraped_fields:
+#                             output_row[field] = ""
+#                         writer.writerow(output_row)
+#                     else:
+#                         for prog in programs:
+#                             output_row = row.copy()  # Keep ALL original input data
+#                             output_row.update(prog)
+#                             writer.writerow(output_row)
 
-#                     print(f"→ Extracted {len(programs)} programs\n")
+#                     print(f"  → Successfully extracted {len(programs)} programs")
 
 #                 except Exception as e:
-#                     print(f"Error: {e}")
+#                     print(f"  → Critical error: {e}")
+#                     # Write original row on error
+#                     output_row = row.copy()
+#                     for field in scraped_fields:
+#                         output_row[field] = ""
+#                     writer.writerow(output_row)
 
 #     driver.quit()
-#     print("All done!")
+#     print(f"\nAll done! Saved to {CSV_OUTPUT}")
 
 # if __name__ == "__main__":
 #     main()
-
-
 
 
 
@@ -244,8 +174,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # ----------------------------- CONFIG -----------------------------
-CSV_INPUT = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/utulsa_input.csv"
-CSV_OUTPUT = "extracted_programs_utulsa.csv"
+CSV_INPUT = "../crawling-scrapping/phase-1_input_files/utulsa_input_latest.csv"
+CSV_OUTPUT = "../crawling-scrapping/phase-1_output_files_phase-2_input/extracted_programs_utulsa_latest_v2.csv"
 
 # Headless Chrome setup
 chrome_options = Options()
@@ -255,7 +185,6 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.6312.86 Safari/537.36")
-
 driver = webdriver.Chrome(options=chrome_options)
 wait = WebDriverWait(driver, 30)
 
@@ -263,20 +192,8 @@ wait = WebDriverWait(driver, 30)
 def clean_text(text):
     return re.sub(r'\s+', ' ', text).strip() if text else ""
 
-def extract_programs_from_page(page_url):
-    print(f"    Loading page: {page_url}")
-    driver.get(page_url)
-    
-    # Wait for program cards to appear
-    try:
-        wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".explorer-card__anchor")))
-        print("    Found program cards (.explorer-card__anchor)")
-    except:
-        print("    ERROR: Could not find program cards — page structure changed or blocked?")
-        return []
-
-    # Scroll to load all lazy-loaded content (if any)
-    print("    Scrolling to ensure all programs are loaded...")
+def scroll_to_load_all():
+    print(" Scrolling to ensure all content is loaded...")
     last_height = driver.execute_script("return document.body.scrollHeight")
     while True:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -285,111 +202,175 @@ def extract_programs_from_page(page_url):
         if new_height == last_height:
             break
         last_height = new_height
-
     time.sleep(2)  # Final wait
 
-    # Extract all cards
+def extract_categories_from_listing(page_url):
+    print(f" Loading listing page: {page_url}")
+    driver.get(page_url)
+    
+    # Wait for category cards to appear
+    try:
+        wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, ".explorer-card__anchor")))
+        print(" Found category cards (.explorer-card__anchor)")
+    except:
+        print(" ERROR: Could not find category cards — page structure changed or blocked?")
+        return []
+    
+    scroll_to_load_all()
+    
+    # Extract all category cards
     cards = driver.find_elements(By.CSS_SELECTOR, ".explorer-card__anchor")
-    print(f"    Found {len(cards)} program cards")
-
-    programs = []
+    print(f" Found {len(cards)} category cards")
+    categories = []
     for card in cards:
         try:
-            # Program name
+            # Category name
             name_elem = card.find_element(By.CSS_SELECTOR, "h3.explorer-card__section__entry-header")
-            program_name = clean_text(name_elem.text)
-
+            category_name = clean_text(name_elem.text)
+            
             # Degree type — not explicitly marked, so leave empty or infer if needed
             degree_type = ""
-
+            
             # Campus / Delivery format
             campuses = "Not specified"
             format_elems = card.find_elements(By.CSS_SELECTOR, ".explorer-card__section__program-format")
             if format_elems:
                 campuses = ", ".join([clean_text(e.text) for e in format_elems if e.text.strip()])
-
-            # Program link — the card itself is the <a>
-            program_link = card.get_attribute("href")
-
-            if program_name and program_link:
-                programs.append({
-                    "program_name": program_name,
+            
+            # Category link — the card itself is the <a>
+            category_link = card.get_attribute("href")
+            
+            if category_name and category_link:
+                categories.append({
+                    "category_name": category_name,  # Renamed to distinguish from sub-program_name
                     "degree_type": degree_type,
-                    "campuses": campuses,
-                    "program_link": program_link
+                    "campus_name": campuses,
+                    "first_layer": category_link
                 })
-
         except Exception as e:
-            print(f"      Warning: Failed to parse one card → {e}")
+            print(f" Warning: Failed to parse one category card → {e}")
             continue
+    return categories
 
-    return programs
+def extract_sub_programs_from_first_layer(first_layer_url):
+    print(f" Loading first-layer page: {first_layer_url}")
+    driver.get(first_layer_url)
+    
+    try:
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "entry-content")))
+        print(" Found entry-content divs")
+    except:
+        print(" ERROR: Could not find entry-content — page structure changed?")
+        return []
+    
+    scroll_to_load_all()
+    
+    # Extract program_overview from the second div.entry-content
+    entry_contents = driver.find_elements(By.CLASS_NAME, "entry-content")
+    program_overview = ""
+    if len(entry_contents) >= 2:
+        program_overview = clean_text(entry_contents[1].text)
+        print(f" Extracted program_overview (length: {len(program_overview)} chars)")
+    else:
+        print(" Warning: Fewer than 2 entry-content divs found")
+    
+    # Extract sub-programs from the first div.ut_cards__grid.grid-x.grid-margin-x.align-center
+    sub_programs = []
+    grid_divs = driver.find_elements(By.CSS_SELECTOR, "div.ut_cards__grid.grid-x.grid-margin-x.align-center")
+    if grid_divs:
+        first_grid = grid_divs[0]
+        # Find all <a> tags inside the grid
+        links = first_grid.find_elements(By.TAG_NAME, "a")
+        print(f" Found {len(links)} potential sub-program links in grid")
+        for link in links:
+            try:
+                sub_name = clean_text(link.text)
+                sub_url = link.get_attribute("href")
+                if sub_name and sub_url:
+                    sub_programs.append({
+                        "program_name": sub_name,
+                        "programUrl": sub_url,
+                        "program_overview": program_overview  # Shared for all subs
+                    })
+            except Exception as e:
+                print(f" Warning: Failed to parse one sub-link → {e}")
+                continue
+    else:
+        print(" Warning: No ut_cards__grid div found — using first_layer as fallback?")
+        # Optional fallback: If no subs, treat as single program
+        sub_programs.append({
+            "program_name": "",  # Will use category_name later if needed
+            "programUrl": first_layer_url,
+            "program_overview": program_overview
+        })
+    
+    return sub_programs
 
 # ----------------------------- MAIN -----------------------------
 def main():
     input_path = Path(CSV_INPUT)
     output_path = Path(CSV_OUTPUT)
-
     if not input_path.exists():
         print(f"Input CSV not found: {CSV_INPUT}")
         return
-
+    
     file_exists = output_path.exists()
-
+    
     # Read input to preserve original columns
     with open(input_path, newline='', encoding='utf-8') as infile:
         reader = csv.DictReader(infile)
         input_fieldnames = reader.fieldnames  # All original columns
-
-        scraped_fields = ["program_name", "degree_type", "campuses", "program_link"]
-        output_fieldnames = input_fieldnames + [f for f in scraped_fields if f not in input_fieldnames]
-
+        scraped_fields = ["category_name", "program_name", "degree_type", "campus_name", "first_layer", "program_overview", "programUrl"]
+        output_fieldnames = list(set(input_fieldnames + scraped_fields))  # Unique, preserve order if needed
+    
     # Now process
     with open(input_path, newline='', encoding='utf-8') as infile:
         reader = csv.DictReader(infile)
-
         with open(output_path, 'a', newline='', encoding='utf-8') as outfile:
             writer = csv.DictWriter(outfile, fieldnames=output_fieldnames)
             if not file_exists:
                 writer.writeheader()
-
             for row in reader:
                 listing_url = row.get("degree_program_link", "").strip()
                 uni_name = row.get("university_name", "Unknown University")
-
                 if not listing_url:
                     print("Skipping row — no degree_program_link")
                     continue
-
                 print(f"\n=== {uni_name} ===")
                 print(f"URL: {listing_url}")
-
                 try:
-                    programs = extract_programs_from_page(listing_url)
-
-                    if not programs:
-                        print("  → No programs extracted.")
+                    categories = extract_categories_from_listing(listing_url)
+                    if not categories:
+                        print(" → No categories extracted.")
                         # Still write original row with empty scraped fields
                         output_row = row.copy()
                         for field in scraped_fields:
                             output_row[field] = ""
                         writer.writerow(output_row)
                     else:
-                        for prog in programs:
-                            output_row = row.copy()  # Keep ALL original input data
-                            output_row.update(prog)
+                        total_subs = 0
+                        for cat in categories:
+                            subs = extract_sub_programs_from_first_layer(cat["first_layer"])
+                            for sub in subs:
+                                output_row = row.copy()  # Keep ALL original input data
+                                output_row.update(cat)  # Add category info (category_name, campus_name, etc.)
+                                output_row.update(sub)  # Add/override with sub info (program_name, programUrl, program_overview)
+                                writer.writerow(output_row)
+                                total_subs += 1
+                        if total_subs == 0:
+                            # If no subs at all, write originals
+                            output_row = row.copy()
+                            for field in scraped_fields:
+                                output_row[field] = ""
                             writer.writerow(output_row)
-
-                    print(f"  → Successfully extracted {len(programs)} programs")
-
+                        print(f" → Successfully extracted {total_subs} sub-programs from {len(categories)} categories")
                 except Exception as e:
-                    print(f"  → Critical error: {e}")
+                    print(f" → Critical error: {e}")
                     # Write original row on error
                     output_row = row.copy()
                     for field in scraped_fields:
                         output_row[field] = ""
                     writer.writerow(output_row)
-
     driver.quit()
     print(f"\nAll done! Saved to {CSV_OUTPUT}")
 
