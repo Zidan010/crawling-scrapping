@@ -1,2 +1,2 @@
-university_name,program_name,degree_type,program_content,degree_program_link,programUrl,rank_type,position,campus_name,url,email,phone,country,city,zipCode,address,first_layer
-University of Tulsa,,,,https://utulsa.edu/programs/,,CS,175,,https://utulsa.edu/,,,,,,,
+university_name,program_name,degree_type,program_content,degree_program_link,programUrl,rank_type_1,position_1,campus_name,url,email,phone,country,city,zipCode,address,first_layer
+University of Tulsa,,,,"https://bulletin.utulsa.edu/content.php?catoid=52&navoid=2826",,CS,175,Tulsa,https://utulsa.edu/,,,USA,Tulsa,74104,"800 S. Tucker Drive Tulsa, OK 74104",

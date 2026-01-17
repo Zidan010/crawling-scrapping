@@ -2,7 +2,8 @@
 __pycache__/
 *.py[codz]
 *$py.class
-
+latest_output_of_phase-2_scrape
+latest_input_for_phase-2_scrape
 # C extensions
 *.so
 phase-3_output_final_program_data
@@ -35,7 +36,24 @@ extracted_structured_json_ualabama_latest
 extracted_programs_with_content_wyoming_latest.csv
 phase-2_output_data_with_program_content_phase-3_input
 phase-1_output_files_phase-2_input
-
+deepseek_raw_output_utulsa
+deepseek-raw_output_utulsa_v2
+extracted_structured_json_test
+extracted_structured_json_utulsa_latest
+extracted_structured_json_utulsa_latest_2_fixed
+latest_input_for_phase-2_scrape
+latest_output_of_phase-2_scrape
+new_prompt_test
+phase-1_input_files
+test_utulsa
+test_utulsa-2
+test_validate
+test_validate_output
+testing_database
+backend_ready_data
+validated_data
+upload_log.txt
+upload_results.json
 # Distribution / packaging
 .Python
 build/
