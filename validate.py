@@ -2099,20 +2099,7 @@ def validate_required_fields(data, filename):
         # If campusInfo is empty dict, that's OK (no data found)
         if not campus or len(campus) == 0:
             # Empty dict is acceptable
-            pass
-        # else:
-        #     if "name" in campus:
-        #         campus["name"] = "Gainesville" 
-        #     if "address" in campus:
-        #         campus["address"] = "Gainesville, FL 32611" 
-
-        #     if "webUrl" in campus:
-        #         campus["webUrl"] = "https://www.ufl.edu/"   
-        #     if "email" in campus:
-        #         campus["email"] = ""  
-
-        #     if "city" in campus:
-        #         campus["city"] = "Gainesville"  
+            pass 
 
 
             # If campusInfo exists but has empty required fields, that's a failure
@@ -2140,29 +2127,6 @@ def validate_required_fields(data, filename):
         if "degree_type" in identity and degree_type == "":
             errors.append(f"{variant_prefix}: programIdentity.degree_type is empty string (should have data)")
                 
-
-##### for michigan only
-        # # REQUIRED: degree info (if exists)
-        # degree_name = identity.get("degree_name", "")
-        # degree_type = identity.get("degree_type", "")
-
-        # # Auto-fix if both are empty
-        # if (
-        #     "degree_name" in identity and "degree_type" in identity
-        #     # and degree_name == "" and degree_type == ""
-        # ):
-        #     identity["degree_name"] = "Undergraduate Minor"
-        #     identity["degree_type"] = "Undergraduate Minor"
-        # else:
-        #     # Existing validation behavior
-        #     if "degree_name" in identity and degree_name == "":
-        #         errors.append(
-        #             f"{variant_prefix}: programIdentity.degree_name is empty string (should have data)"
-        #         )
-        #     if "degree_type" in identity and degree_type == "":
-        #         errors.append(
-        #             f"{variant_prefix}: programIdentity.degree_type is empty string (should have data)"
-        #         )
 
 
 
@@ -2289,14 +2253,6 @@ def validate_required_fields(data, filename):
                 variant["languageRequirements"]["languageRequirements"] = filtered_reqs
 
 
-        # # Check scholarships (type and name are REQUIRED if exist)
-        # scholarships = variant.get("scholarships", {}).get("scholarships", [])
-        # if isinstance(scholarships, list):
-        #     for sch_idx, sch in enumerate(scholarships):
-        #         if "type" in sch and sch.get("type") == "":
-        #             errors.append(f"{variant_prefix}: Scholarship[{sch_idx}] has empty type (should have data)")
-        #         if "name" in sch and sch.get("name") == "":
-        #             errors.append(f"{variant_prefix}: Scholarship[{sch_idx}] has empty name (should have data)")
         
         scholarships = variant.get("scholarships", {}).get("scholarships", [])
         if isinstance(scholarships, list):

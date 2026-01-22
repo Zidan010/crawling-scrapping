@@ -1,0 +1,245 @@
+{
+    "university_name": "University of Central Florida",
+    "program_name": "Psychology (BS) - General Psychology Track",
+    "degree_type": "BS",
+    "program_content": "[Skip to main content](https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#content)\n[](https://www.ucf.edu)\n[](https://workday.ucf.edu/) [](https://my.ucf.edu) [](https://webmail.ucf.edu/) [](https://webcourses.ucf.edu)\n##  Program at a Glance\n\nProgram\n    Bachelor\n\nCollege(s)\n     [ College of Sciences ](https://www.ucf.edu/college/sciences/)\n\nDepartment(s)\n     Psychology\n  * [ In State Tuition ](https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#resident-tuition)\n  * [ Out of State Tuition ](https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#nonresident-tuition)\n\n$212.28  per credit hour\n$802.54  per credit hour\n[Learn more about the cost to attend UCF.](https://www.ucf.edu/financial-aid/cost/)\n##  Undergraduate Application Deadlines\n  * [ Freshmen ](https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#degree-deadlines--freshmen)\n  * [ Transfers ](https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#degree-deadlines--transfers)\n  * [ International ](https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#degree-deadlines--international)\n\nFall\n    May 1 Spring\n    November 1 Summer\n    March 1 Fall\n    July 1 Spring\n    November 1 Summer\n    March 1 Fall\n    March 1 Spring\n    September 1 Summer\n    January 1\n##  Ready to  get started?\n[ Apply Today ](https://www.ucf.edu/admissions/undergraduate/apply/)\n* * *\n## University of Central Florida Colleges\n[ Burnett Honors ](https://www.ucf.edu/college/burnett-honors-college/) [ Arts and Humanities ](https://www.ucf.edu/college/arts-humanities/) [ Business ](https://www.ucf.edu/college/business-administration/) [ Community Innovation and Education ](https://www.ucf.edu/college/community-innovation-education/) [ Engineering and Computer Science ](https://www.ucf.edu/college/engineering-computer-science/) [ Graduate Studies ](https://www.ucf.edu/college/graduate-studies/) [ Health Professions and Sciences ](https://www.ucf.edu/college/health-professions-sciences/) [ Medicine ](https://www.ucf.edu/college/medicine/) [ Nursing ](https://www.ucf.edu/college/nursing/) [ Optics and Photonics ](https://www.ucf.edu/college/optics-photonics/) [ Hospitality Management ](https://www.ucf.edu/college/rosen-college-hospitality-management/) ## [Ready to Get Started? Find the degree program that's right for you  ](https://www.ucf.edu/academics/)",
+    "degree_program_link": "https://www.ucf.edu/majors/",
+    "programUrl": "https://www.ucf.edu/degree/psychology-bs/general-psychology-track/",
+    "rank_type_1": "CS",
+    "position_1": 54,
+    "campus_name": "Orlando",
+    "url": "https://www.ucf.edu/",
+    "email": "",
+    "phone": "407.823.2000",
+    "country": "USA",
+    "city": "Orlando, Florida",
+    "zipCode": 32816,
+    "address": "4000 Central Florida Blvd. Orlando, Florida, 32816",
+    "department": "",
+    "deliveryType": "",
+    "pid": "ucflorida_542cac0d-c691-494d-a3a6-f38a89e7fb96",
+    "extracted_data": {
+        "programVariants": [
+            {
+                "programIdentity": {
+                    "program_name": "Psychology - General Psychology Track",
+                    "general_overview": "",
+                    "degree_name": "Bachelor of Science",
+                    "degree_code": "BS",
+                    "degree_type": "Bachelor",
+                    "department": "Psychology"
+                },
+                "sessionDelivery": {
+                    "session": [
+                        {
+                            "title": "Fall",
+                            "startDate": "",
+                            "endDate": "",
+                            "recursive": true
+                        },
+                        {
+                            "title": "Winter",
+                            "startDate": "",
+                            "endDate": "",
+                            "recursive": true
+                        },
+                        {
+                            "title": "Summer",
+                            "startDate": "",
+                            "endDate": "",
+                            "recursive": true
+                        }
+                    ],
+                    "durationYear": 0,
+                    "deliveryType": []
+                },
+                "admissionTimeline": {
+                    "admissionTimeline": [
+                        {
+                            "type": "Close",
+                            "title": "Freshmen Fall",
+                            "detail": "",
+                            "date": "",
+                            "session": "Fall",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "Freshmen Spring",
+                            "detail": "",
+                            "date": "",
+                            "session": "Spring",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "Freshmen Summer",
+                            "detail": "",
+                            "date": "",
+                            "session": "Summer",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "Transfers Fall",
+                            "detail": "",
+                            "date": "",
+                            "session": "Fall",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "Transfers Spring",
+                            "detail": "",
+                            "date": "",
+                            "session": "Spring",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "Transfers Summer",
+                            "detail": "",
+                            "date": "",
+                            "session": "Summer",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "International Fall",
+                            "detail": "",
+                            "date": "",
+                            "session": "Fall",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "International Spring",
+                            "detail": "",
+                            "date": "",
+                            "session": "Spring",
+                            "region": ""
+                        },
+                        {
+                            "type": "Close",
+                            "title": "International Summer",
+                            "detail": "",
+                            "date": "",
+                            "session": "Summer",
+                            "region": ""
+                        }
+                    ]
+                },
+                "fees": {
+                    "tuitionFeePerYear": [
+                        {
+                            "amount": 0,
+                            "currency": "",
+                            "region": ""
+                        }
+                    ],
+                    "applicationFee": [
+                        {
+                            "amount": 0,
+                            "currency": "",
+                            "region": ""
+                        }
+                    ]
+                },
+                "howToApply": {
+                    "howToApply": [
+                        {
+                            "title": "Apply Today",
+                            "detail": "",
+                            "webLink": "https://www.ucf.edu/admissions/undergraduate/apply/"
+                        }
+                    ]
+                },
+                "admissionProgramTypes": {
+                    "admissionProgramTypes": []
+                },
+                "generalRequirements": {
+                    "generalRequirements": [            {
+                "type": "Statement of Purpose",
+                "title": "You'll need to submit a letter of application or personal statement where you discuss your professional and academic goals, explain how",
+                "page": 0,
+                "words": 0,
+                "count": 1,
+                "details": "You'll need to submit a letter of application or personal statement where you discuss your professional and academic goals, explain how the MA in Higher Education Administration will help you achieve those goals, and highlight any special circumstances the admissions committee should know about (like undergraduate GPA below 3.0 or past graduate courses taken)."
+            },
+            {
+                "type": "Resume",
+                "title": "Professional resume or curriculum vitae",
+                "page": 0,
+                "words": 0,
+                "count": 1,
+                "details": "Professional resume or curriculum vitae"
+            }]
+                },
+                "standardizedRequirements": {
+                    "standardizedRequirements": []
+                },
+                "languageRequirements": {
+                    "languageRequirements": []
+                },
+                "degreeRequirements": {
+                    "degreeRequirements": []
+                },
+                "scholarships": {
+                    "scholarships": [
+                        {
+                            "type": "Funding",
+                            "name": "Georgia CTSA financial support for the Emory MSCR program or MSM MSCR program for pre-doctoral trainees and postdoctoral fellows (resident and fellow physicians, PhD postdocs) is through the Georgia CTSA TL1 funding mechanism.",
+                            "requirement": [
+                                "predoctoral trainees and postdoctoral fellows (resident and fellow physicians, PhD postdocs)"
+                            ],
+                            "detail": "Georgia CTSA financial support for the Emory MSCR program or MSM MSCR program for pre-doctoral trainees and postdoctoral fellows (resident and fellow physicians, PhD postdocs) is through the Georgia CTSA TL1 funding mechanism.",
+                            "amount": 0,
+                            "currency": "",
+                            "webLink": "https://georgiactsa.org/training/tl1.html",
+                            "deadline": ""
+                        },
+                        {
+                            "type": "Funding",
+                            "name": "Georgia CTSA KL2 mechanism",
+                            "requirement": [
+                                "Junior faculty"
+                            ],
+                            "detail": "Georgia CTSA KL2 mechanism",
+                            "amount": 0,
+                            "currency": "",
+                            "webLink": "https://georgiactsa.org/training/kl2.html",
+                            "deadline": ""
+                        }
+                    ]
+                },
+                "usefulLink": [
+                    {
+                        "title": "In State Tuition",
+                        "detail": "",
+                        "webLink": "https://www.ucf.edu/degree/psychology-bs/general-psychology-track/#resident-tuition"
+                    },
+                    {
+                        "title": "Out of State Tuition",
+                        "detail": "",
+                        "webLink": "hts://www.ucf.edu/degree/psychology-bs/general-psychology-track/#nonresident-tuition"
+                    },
+                    {
+                        "title": "Learn more about the cost to attend UCF.",
+                        "detail": "",
+                        "webLink": "https://www.ucf.edu/financial-aid/cost/"
+                    }
+                ],
+                "campusInfo": {
+                    "name": "",
+                    "webUrl": "",
+                    "email": "",
+                    "phone": "",
+                    "country": "",
+                    "city": "",
+                    "zipCode": "",
+                    "address": ""
+                }
+            }
+        ]
+    }
+}

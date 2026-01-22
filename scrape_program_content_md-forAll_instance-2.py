@@ -500,8 +500,8 @@ csv.field_size_limit(sys.maxsize)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-INPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/phase-1_output_files_phase-2_input/updated-extracted_case_western_programs.csv"
-OUTPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/latest_output_of_phase-2_scrape/updated-extracted_programs_content_case_western.csv"
+INPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/phase-1_output_files_phase-2_input/updated-extracted_drexel_G_programs.csv"
+OUTPUT_CSV = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/latest_output_of_phase-2_scrape/updated-extracted_programs_content_drexel_G.csv"
 
 browser_config = BrowserConfig(
     headless=True,
@@ -1021,7 +1021,7 @@ async def main():
                                for k, v in row.items()}
                 
                 sanitized_row["program_content"] = cleaned_content
-                sanitized_row["id"] = generate_custom_id("casewu")
+                sanitized_row["id"] = generate_custom_id("drxelG")
                 
                 writer.writerow(sanitized_row)
                 batch_count += 1

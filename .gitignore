@@ -6,6 +6,7 @@ latest_output_of_phase-2_scrape
 latest_input_for_phase-2_scrape
 # C extensions
 *.so
+latest_validated_data
 phase-3_output_final_program_data
 extracted_programs_wyoming.csv
 extracted_programs_with_content_wyoming.csv
@@ -25,6 +26,8 @@ extracted_programs_ualabama_latest.csv
 extracted_programs_ualabama.csv
 extracted_programs_uidaho_latest.csv
 extracted_programs_uidaho.csv
+backend_ready_data_latest
+backend_ready_data_22jan
 extracted_programs_with_content_ualabama_latest.csv
 extracted_programs_with_content_ualabama.csv
 extracted_programs_with_content_uidaho_latest.csv

@@ -1,0 +1,393 @@
+{
+    "university_name": "University of Connecticut",
+    "program_name": "Social Work (MSW)/Juris Doctor",
+    "degree_type": "JD",
+    "program_content": "# Social Work (MSW)/Juris Doctor (JD)\n\n- **Overview** [#textcontainer]\n- **Requirements** [#requirementstextcontainer]\n\nIn cooperation with the UConn School of Social Work, the School of Law offers student the opportunity to earn a dual degree of Juris Doctor J.D./Social Work M.S.W. The J.D./M.S.W. degree is designed for students who are interested in the social impact of the legal system upon individuals. Students pursue this degree to prepare for careers in fields such as public interest law, mental health law, elder law, women's rights, penology, juvenile advocacy, human services administration, community organizing and public policy and planning. The dual degree program is highly individualistic in nature in order to provide each student with the best possible combination of these two disciplines. Students in the dual degree program may obtain both degrees in four years, compared with five years, if both degrees were pursued separately.\n\nend #textcontainer\n\n## Requirements\n\nStudy is generally begun at the School of Law, where during the first year students will complete a minimum of 33 credits of required curriculum study. During the second year, students will complete a minimum of six Social Work courses, their first year field placement and a minimum of two Law courses. Year three will consist of a minimum of three Social Work courses, their second field placement, a Law School clinical experience (which coordinated in combination with the School of Social Work, can apply toward the second year field placement requirement of 560 hours), and six courses at the School of Law. During year four, students will take all remaining credits. Additionally, all students must comply with the rules regarding credit load limitations. Without prior approval from the Associate Dean of the Law School, full time students may not exceed 16 credits and part time students may not exceed 12 credits per semester. Permission may be granted by the Law School for 17 credits. The limit per semester at the School of Social Work is 17 credits.\n\n## Transfer Agreement\n\nThe J.D. degree program requires completion of 86 credits (including all required first-year courses, Legal Profession ( **LAW 7565** [/search/?P=LAW%207565] Legal Profession ), completing intensive, analytical paper(s) which satisfies a writing requirement, and course work which satisfies the Practice Based Learning requirement). The M.S.W. degree program requires completion of 60 credits (including Social Work foundation, concentration courses in the student's selected concentration, two field placements, electives and research). The School of Law will accept 12 credits from among a student's advanced M.S.W. courses for transfer. The School of Social Work will accept nine elective credits of non-clinical work earned at the School of Law; this is achieved by reducing the number of required credits for the program.\n\n## Law Courses Acceptable for Transfer to the M.S.W. Program\n\n- Administrative Law\n- Children and the Law\n- Center for Children's Advocacy\n- Elder Law\n- Employment Discrimination Law\n- Family Law\n- Law and Medicine\n- Mental Health Law\n- Street Law\n\n## M.S.W. Courses Acceptable for Transfer to the J.D. Program\n\nThe School of Law will accept 12 credits from the student's M.S.W. program.",
+    "degree_program_link": "https://catalog.uconn.edu/graduate/graduate-programs/#dualdegreeprogramstext",
+    "programUrl": "https://catalog.uconn.edu/graduate/dual-degree-programs/social-work-msw-juris-doctor-jd/",
+    "rank_type_1": "CS",
+    "position_1": 63,
+    "campus_name": "Connecticut",
+    "url": "https://uconn.edu/",
+    "email": "",
+    "phone": "(860) 486-2000",
+    "country": "USA",
+    "city": "Connecticut",
+    "zipCode": "",
+    "deliveryType": "Online",
+    "address": "Storrs, Connecticut 06269",
+    "id": "81624d20-8d3f-44b1-b773-2dcffe79355f",
+    "extracted_data": {
+        "programVariants": [
+            {
+                "programIdentity": {
+                    "program_name": "",
+                    "general_overview": "This is a dual degree program allowing students to earn a Juris Doctor (J.D.) and a Master of Social Work (M.S.W.) concurrently. It is designed for those interested in the social impact of the legal system on individuals, preparing for careers in public interest law, mental health law, elder law, women's rights, and related fields. The program is highly individualized and can be completed in four years instead of five if pursued separately.",
+                    "degree_name": "",
+                    "degree_code": "JD",
+                    "degree_type": "Doctorate",
+                    "department": ""
+                },
+                "sessionDelivery": {
+                    "session": [],
+                    "durationYear": 4,
+                    "deliveryType": []
+                },
+                "admissionTimeline": {
+                    "admissionTimeline": []
+                },
+                "fees": {
+                    "tuitionFeePerYear": [
+                        {
+                            "amount": 0,
+                            "currency": "",
+                            "region": ""
+                        }
+                    ],
+                    "applicationFee": [
+                        {
+                            "amount": 0,
+                            "currency": "",
+                            "region": ""
+                        }
+                    ]
+                },
+                "howToApply": {
+                    "howToApply": []
+                },
+                "admissionProgramTypes": {
+                    "admissionProgramTypes": [
+                        {
+                            "type": "Curriculum",
+                            "overview": "The program involves a structured four-year plan with coursework and field placements in both Law and Social Work. Year 1 focuses on Law courses, Year 2 on Social Work courses and first field placement, Year 3 on a mix including a Law clinical experience, and Year 4 on remaining credits. Credit load limitations apply per semester.",
+                            "courseOutline": []
+                        },
+                        {
+                            "type": "Required Courses",
+                            "overview": "For the J.D., students must complete 86 credits including first-year courses, Legal Profession (LAW 7565), writing requirements, and Practice Based Learning. For the M.S.W., 60 credits are required including foundation, concentration courses, two field placements, electives, and research.",
+                            "courseOutline": [
+                                {
+                                    "title": "Legal Profession",
+                                    "detail": "LAW 7565"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Electives",
+                            "overview": "Transfer agreements allow 12 credits from M.S.W. courses to count toward the J.D. and 9 elective credits from non-clinical Law courses to count toward the M.S.W.",
+                            "courseOutline": []
+                        },
+                        {
+                            "type": "Track",
+                            "overview": "Law courses acceptable for transfer to the M.S.W. program include Administrative Law, Children and the Law, Center for Children's Advocacy, Elder Law, Employment Discrimination Law, Family Law, Law and Medicine, Mental Health Law, and Street Law.",
+                            "courseOutline": [
+                                {
+                                    "title": "Administrative Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Children and the Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Center for Children's Advocacy",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Elder Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Employment Discrimination Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Family Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Law and Medicine",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Mental Health Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Street Law",
+                                    "detail": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "generalRequirements": {
+                    "generalRequirements": [
+                        {
+                            "type": "Transcript",
+                            "title": "Transcripts",
+                            "page": 0,
+                            "words": 0,
+                            "count": 0,
+                            "details": "Transcripts from all post-secondary institutions attended"
+                        },
+                        {
+                            "type": "Recommendation Letter",
+                            "title": "Letters of recommendation",
+                            "page": 0,
+                            "words": 0,
+                            "count": 2,
+                            "details": "Two letters of recommendation (academic or professional only; Select Ph.D. programs require a third letter of recommendation)"
+                        },
+                        {
+                            "type": "Statement of Purpose",
+                            "title": "Statement of Purpose",
+                            "page": 0,
+                            "words": 0,
+                            "count": 0,
+                            "details": "Statement of Purpose"
+                        },
+                        {
+                            "type": "CV",
+                            "title": "Resume/CV",
+                            "page": 0,
+                            "words": 0,
+                            "count": 0,
+                            "details": "Resume/CV"
+                        },
+                        {
+                            "type": "Other",
+                            "title": "Writing sample(s)",
+                            "page": 0,
+                            "words": 0,
+                            "count": 0,
+                            "details": "Writing sample(s). All applicants are encouraged to submit a lab report (preferable) or paper that they wrote, individually, for an engineering course. Applicants who have published a journal article are also encouraged to submit a copy of their article."
+                        }
+                    ]
+                },
+                "standardizedRequirements": {
+                    "standardizedRequirements": [
+                        {
+                            "test": {
+                                "type": "GRE",
+                                "total": 0,
+                                "verbal": 0,
+                                "quant": 0,
+                                "awa": 0,
+                                "readingAndWriting": 0,
+                                "math": 0,
+                                "required": true
+                            }
+                        },
+                        {
+                            "test": {
+                                "type": "ggt",
+                                "total": 0,
+                                "verbal": 0,
+                                "quant": 0,
+                                "awa": 0,
+                                "readingAndWriting": 0,
+                                "math": 0,
+                                "required": true
+                            }
+                        }
+                    ]
+                },
+                "languageRequirements": {
+                    "languageRequirements": [
+                        {
+                            "test": {
+                                "type": "TOEFL",
+                                "total": 0,
+                                "listening": 0,
+                                "reading": 0,
+                                "writing": 0,
+                                "speaking": 0,
+                                "required": false
+                            }
+                        },
+                        {
+                            "test": {
+                                "type": "IELS",
+                                "total": 0,
+                                "listening": 0,
+                                "reading": 0,
+                                "writing": 0,
+                                "speaking": 0,
+                                "required": false
+                            }
+                        },
+                        {
+                            "test": {
+                                "type": "Duolingo",
+                                "total": 0,
+                                "listening": 0,
+                                "reading": 0,
+                                "writing": 0,
+                                "speaking": 0,
+                                "required": false
+                            }
+                        },
+                        {
+                            "test": {
+                                "type": "PTE",
+                                "total": 0,
+                                "listening": 0,
+                                "reading": 0,
+                                "writing": 0,
+                                "speaking": 0,
+                                "required": false
+                            }
+                        }
+                    ]
+                },
+                "degreeRequirements": {
+                    "degreeRequirements": []
+                },
+                "scholarships": {
+                    "scholarships": []
+                },
+                "usefulLink": [],
+                "campusInfo": {
+                    "name": "",
+                    "webUrl": "",
+                    "email": "",
+                    "phone": "",
+                    "country": "",
+                    "city": "",
+                    "zipCode": "",
+                    "address": ""
+                }
+            },
+            {
+                "programIdentity": {
+                    "program_name": "Social Work/Juris Doctor",
+                    "general_overview": "This is a dual degree program allowing students to earn a Juris Doctor (J.D.) and a Master of Social Work (M.S.W.) concurrently. It is designed for those interested in the social impact of the legal system on individuals, preparing for careers in public interest law, mental health law, elder law, women's rights, and related fields. The program is highly individualized and can be completed in four years instead of five if pursued separately.",
+                    "degree_name": "Master of Social Work",
+                    "degree_code": "MSW",
+                    "degree_type": "Master",
+                    "department": ""
+                },
+                "sessionDelivery": {
+                    "session": [],
+                    "durationYear": 4,
+                    "deliveryType": ["Online","main"]
+                },
+                "admissionTimeline": {
+                    "admissionTimeline": []
+                },
+                "fees": {
+                    "tuitionFeePerYear": [
+                        {
+                            "amount": 100,
+                            "currency": "BDT",
+                            "region": "BD"
+                        }
+                    ],
+                    "applicationFee": [
+                        {
+                            "amount": 0,
+                            "currency": "USD",
+                            "region": ""
+                        }
+                    ]
+                },
+                "howToApply": {
+                    "howToApply": []
+                },
+                "admissionProgramTypes": {
+                    "admissionProgramTypes": [
+                        {
+                            "type": "Curriculum",
+                            "overview": "The program involves a structured four-year plan with coursework and field placements in both Law and Social Work. Year 1 focuses on Law courses, Year 2 on Social Work courses and first field placement, Year 3 on a mix including a Law clinical experience, and Year 4 on remaining credits. Credit load limitations apply per semester.",
+                            "courseOutline": []
+                        },
+                        {
+                            "type": "Required Courses",
+                            "overview": "For the J.D., students must complete 86 credits including first-year courses, Legal Profession (LAW 7565), writing requirements, and Practice Based Learning. For the M.S.W., 60 credits are required including foundation, concentration courses, two field placements, electives, and research.",
+                            "courseOutline": [
+                                {
+                                    "title": "Legal Profession",
+                                    "detail": "LAW 7565"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Electives",
+                            "overview": "Transfer agreements allow 12 credits from M.S.W. courses to count toward the J.D. and 9 elective credits from non-clinical Law courses to count toward the M.S.W.",
+                            "courseOutline": []
+                        },
+                        {
+                            "type": "Track",
+                            "overview": "Law courses acceptable for transfer to the M.S.W. program include Administrative Law, Children and the Law, Center for Children's Advocacy, Elder Law, Employment Discrimination Law, Family Law, Law and Medicine, Mental Health Law, and Street Law.",
+                            "courseOutline": [
+                                {
+                                    "title": "Administrative Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Children and the Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Center for Children's Advocacy",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Elder Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Employment Discrimination Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Family Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Law and Medicine",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Mental Health Law",
+                                    "detail": ""
+                                },
+                                {
+                                    "title": "Street Law",
+                                    "detail": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "generalRequirements": {
+                    "generalRequirements": []
+                },
+                "standardizedRequirements": {
+                    "standardizedRequirements": []
+                },
+                "languageRequirements": {
+                    "languageRequirements": []
+                },
+                "degreeRequirements": {
+                    "degreeRequirements": []
+                },
+                "scholarships": {
+                    "scholarships": []
+                },
+                "usefulLink": [],
+                "campusInfo": {
+                    "name": "",
+                    "webUrl": "",
+                    "email": "",
+                    "phone": "",
+                    "country": "",
+                    "city": "",
+                    "zipCode": "",
+                    "address": ""
+                }
+            }
+        ]
+    }
+}

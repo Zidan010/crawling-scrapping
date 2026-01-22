@@ -10,14 +10,14 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('upload_log.txt'),
+        logging.FileHandler('latest_upload_log_indianau.txt'),
         logging.StreamHandler()
     ]
 )
 
 
 def save_validated_before_upload(file_path: str, cleaned_extracted_data: dict):
-    save_dir = Path("backend_ready_data_uot_Gprogram")
+    save_dir = Path("/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/backend_ready_data_22jan/indianau_validated")
     save_dir.mkdir(exist_ok=True)
 
     filename = Path(file_path).name
@@ -31,7 +31,7 @@ def save_validated_before_upload(file_path: str, cleaned_extracted_data: dict):
 
 def save_backend_ready_data(file_path: str, backend_data: dict, variant_idx: int = 0):
     """Save the transformed backend-ready data for debugging"""
-    save_dir = Path("backend_ready_data_uot_Gprogram")
+    save_dir = Path("/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/backend_ready_data_22jan/indianau_validated")
     save_dir.mkdir(exist_ok=True)
     filename = Path(file_path).stem + f"_variant{variant_idx}_backend_ready.json"
     save_path = save_dir / filename
@@ -100,7 +100,10 @@ class AdmissionUploader:
                 "deliveryType": variant.get('sessionDelivery', {}).get('deliveryType', []),
                 "admissionTimeline": variant.get('admissionTimeline', {}).get('admissionTimeline', []),
                 "tuitionFeePerYear": variant.get('fees', {}).get('tuitionFeePerYear', []),
+                "tuitionFeePerSemester": variant.get('fees', {}).get('tuitionFeePerSemester', []),
+                "tuitionFeePerCredit": variant.get('fees', {}).get('tuitionFeePerCredit', []),
                 "applicationFee": variant.get('fees', {}).get('applicationFee', []),
+                "totalCredit": variant.get('fees', {}).get('totalCredit', 0),
                 "howToApply": variant.get('howToApply', {}).get('howToApply', []),
                 "admissionProgramTypes": variant.get('admissionProgramTypes', {}).get('admissionProgramTypes', []),
                 "generalRequirements": variant.get('generalRequirements', {}).get('generalRequirements', []),
@@ -461,10 +464,10 @@ class AdmissionUploader:
 # Main execution
 if __name__ == "__main__":
     # Configuration
-    AUTH_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcyIsInN1YiI6IjUxNjRlNTNhLTE2ZDItNDExOC05YWU2LTZlODQ1NGE4NzJiYSIsImV4cCI6MTc2ODU4NTgyMCwiZW1haWwiOiJzYXppZGFuNTU5QGdtYWlsLmNvbSIsInNjb3BlIjoidXNlciBhZG1pbiJ9.zKR2pWPFoxOpDmzmuXvEvzIOK4uCnVNRq_8g_OA1kicYP7bD-ymGx5Z379brsoiDvenPgk_e4S5ydQxdxyqXgA"
+    AUTH_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJzcyIsInN1YiI6IjUxNjRlNTNhLTE2ZDItNDExOC05YWU2LTZlODQ1NGE4NzJiYSIsImV4cCI6MTc2OTA5NjMwNSwiZW1haWwiOiJzYXppZGFuNTU5QGdtYWlsLmNvbSIsInNjb3BlIjoidXNlciBhZG1pbiJ9.xer_WRbFyG4tcuqXXoeOfucbTUgaNATPXrwFdFb6U7U4Vvc44Mi4xb4h98BFd67f0s-_HP6BnNi4sRr8CkqB7w"
     
     # Use the validated output folder from validation script
-    VALIDATED_FOLDER = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/uot_Gprogram_raw_data-validate"
+    VALIDATED_FOLDER = "/home/ml-team/Desktop/BackupDisk/uniscrapupbackup/crawling-scrapping/latest_validated_data/indianau_validated"
     
     # Files to skip (if any)
     SKIP_FILES = []
